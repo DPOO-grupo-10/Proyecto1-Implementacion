@@ -3,9 +3,12 @@ package interfaz;
 
 import java.util.HashMap;
 
+import Modelo.PersonaldelHotel;
+
 public class Autenticador {
 	private HashMap<String,String> usuariosConContraseña ;
 	private HashMap<String,String> usuariosConTipo;
+	private HashMap<String,PersonaldelHotel> personaldelhotel;
 	
 	
 	
@@ -45,6 +48,12 @@ public class Autenticador {
 	public void setUsuarios(String usuario,String contraseña,String tipo) {
 		usuariosConContraseña.put(usuario, contraseña);
 		usuariosConTipo.put(usuario,tipo);
+	}
+	
+	
+	public void setPersonaldelHotel(String nom, String usuario, String contraseña) {
+		PersonaldelHotel personal = new PersonaldelHotel(nom,usuario,contraseña);
+		personaldelhotel.put(nom, personal);
 	}
 	
 	public String getTipo(String usuario) {
