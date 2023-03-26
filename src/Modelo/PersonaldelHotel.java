@@ -23,4 +23,8 @@ public class PersonaldelHotel {
 		return nombre;
 	}
 
+	public void agregarServicio() {
+		
+	}
+
 }
