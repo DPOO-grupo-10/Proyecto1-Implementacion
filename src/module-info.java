@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author josuv
+ *
+ */
+module Hotel {
+}
