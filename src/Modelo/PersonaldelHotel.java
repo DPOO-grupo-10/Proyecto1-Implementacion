@@ -2,13 +2,15 @@ package Modelo;
 
 
 public class PersonaldelHotel {
+	private String nombre;
 	private String usuarioSistema;
 	private String contraseñaSistema;
 	
-	public PersonaldelHotel(String usuario, String contraseña ) {
+	public PersonaldelHotel(String nom,String usuario, String contraseña ) {
 		
 		this.usuarioSistema = usuario;
 		this.contraseñaSistema = contraseña;
+		this.nombre = nom;
 	}
 	
 	public String getUsuario() {
@@ -16,6 +18,9 @@ public class PersonaldelHotel {
 	}
 	public String getContraseña() {
 		return contraseñaSistema;
+	}
+	public String getnombre() {
+		return nombre;
 	}
 
 }

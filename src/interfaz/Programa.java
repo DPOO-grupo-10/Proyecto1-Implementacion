@@ -25,8 +25,6 @@ public class Programa {
 		
 		if (navegante == "1") {
 			
-			
-			
 			System.out.println("Elija la opcion que desea utilizar: ");
 			System.out.println("1. Consultar Reserva ");
 			
@@ -42,17 +40,8 @@ public class Programa {
 				controlador.crearReserva(titularReserva, fechaInicial, fechaFinal);
 			}
 			
-			
-			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		if(navegante == "2") {
 			
@@ -88,8 +77,34 @@ public class Programa {
 				
 				String opcionAdmin = scan.nextLine();
 				
+				if (opcionAdmin == "3") {
+					System.out.println("Ingrese el nombre de la persona: ");
+					String nombre = scan.nextLine();
+					System.out.println("Ingrese el usuario asignado a esta persona: ");
+					String usuariopersonal = scan.nextLine();
+					System.out.println("Ingrese la contraseña asignada a esta persona:  ");
+					String cotraseña = scan.nextLine();
+					System.out.println("Ingrese el tipo de personal que es:");
+					System.out.println("1. PERSONAL GENERAL");
+					System.out.println("2. RECEPCIONISTA");
+					
+					
+					String opcionpersonal = scan.nextLine();
+					String tipop="" ;
+					if(opcionpersonal == "1") {
+						tipop = "PERSONAL DEL HOTEL";
+					}
+					if (opcionpersonal == "2") {
+						tipop = "RECEPCIONISTA";
+					}
+					
+					autenticador.setPersonaldelHotel(nombre, usuariopersonal, cotraseña);
+					autenticador.setUsuarios(usuariopersonal, cotraseña, tipop);
+					
+				}
+				else {
 				controlador.agregarinformacion(opcionAdmin);
-				
+				}
 				
 				
 				
@@ -129,10 +144,6 @@ public class Programa {
 					
 				}
 				
-				
-				
-				
-				
 			}
 			
 			if(autenticador.getTipo(usuario) == "PERSONAL DEL HOTEL") {
@@ -159,5 +170,3 @@ public class Programa {
 		
 	}
 	
-
-
