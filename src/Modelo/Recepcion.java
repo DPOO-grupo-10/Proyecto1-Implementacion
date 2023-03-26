@@ -13,10 +13,17 @@ public class Recepcion {
 	}
 	
 	
-	public void crearReserva( String titular ,String fechai, String fechaf) {
+	public Reserva crearReserva( String titular ,String fechai, String fechaf) {
 		GrupoHuespedes grupo = new GrupoHuespedes();
 		ArrayList<Huesped> huespedes = grupo.getHuespedes();
 		Reserva reserva = new Reserva(titular,fechaf, fechai,huespedes);
+		return reserva;
+	}
+	
+	public String cerrarReserva(Reserva reserva) {
+		String factura =  reserva.getFactura();
+		return factura;
+		
 	}
 
 }

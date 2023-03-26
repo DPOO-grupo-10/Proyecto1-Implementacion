@@ -25,6 +25,8 @@ public class Programa {
 		
 		if (navegante == "1") {
 			
+			
+			
 			System.out.println("Elija la opcion que desea utilizar: ");
 			System.out.println("1. Consultar Reserva ");
 			
@@ -40,8 +42,17 @@ public class Programa {
 				controlador.crearReserva(titularReserva, fechaInicial, fechaFinal);
 			}
 			
+			
+			
 		}
-
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		if(navegante == "2") {
 			
@@ -144,6 +155,20 @@ public class Programa {
 					
 				}
 				
+				if(opcionRecepcion =="2") {
+					System.out.println("Ingrese el nombre del titular: ");
+					System.out.println("(La persona a la cual esta asignada la reserva)");
+					String nombretitu = scan.nextLine();
+					String factura = controlador.cerrarReserva(nombretitu);
+					System.out.println("A continuacion se muestra la factura de la reserva: ");
+					System.out.println(factura);
+					
+				}
+				
+				
+				
+				
+				
 			}
 			
 			if(autenticador.getTipo(usuario) == "PERSONAL DEL HOTEL") {
@@ -170,3 +195,4 @@ public class Programa {
 		
 	}
 	
+
