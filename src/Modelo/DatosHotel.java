@@ -29,4 +29,8 @@ public class DatosHotel {
 	public void setHabitaciones(String identificador, Habitacion habit){
 		habitaciones.put(identificador, habit);
 	}
+	public void setServicios(String tiposervicio, Servicio serv){
+		servicios.put(tiposervicio, serv);
+	}
+	
 }

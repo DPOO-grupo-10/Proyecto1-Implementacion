@@ -16,6 +16,7 @@ public class Programa {
 		
 		System.out.println("1. CLIENTE ");
 		System.out.println("2. PERSONAL DEL HOTEL ");
+		
 		String navegante = scan.nextLine();
 		
 		
@@ -39,10 +40,6 @@ public class Programa {
 				String fechaFinal = scan.nextLine();
 				
 				controlador.crearReserva(titularReserva, fechaInicial, fechaFinal);
-				
-			}
-			if(opcion =="2") {
-				
 			}
 			
 			
@@ -91,29 +88,20 @@ public class Programa {
 				
 				String opcionAdmin = scan.nextLine();
 				
+				controlador.agregarinformacion(opcionAdmin);
 				
 				
 				
-				if(opcionAdmin == "1") {
-					System.out.println("De que modo desea agregar las habitaciones?");
-					System.out.println("1. Una por una ");
-					System.out.println("2. En un archivo ");
+				
+				
 					
 					
-					/// Piden que se tenga que hacer por dos opciones por un archivo de texto o una por una
-					
-					String opcionhabitacion = scan.nextLine();
-					if(opcionhabitacion == "1") {
-						
-						
-						
-					}
 					
 				}
 				
 				
 				
-			}
+			
 			
 			
 			if(autenticador.getTipo(usuario) == "RECEPCIONISTA") {
@@ -149,13 +137,14 @@ public class Programa {
 			
 			if(autenticador.getTipo(usuario) == "PERSONAL DEL HOTEL") {
 				System.out.println("++++++++++ BIENVENIDO ++++++++ ");
-				System.out.println("++++++++++ A RECEPCION ++++++++ ");
+				System.out.println("+++++++++++ PERSONAL ++++++++ ");
 				System.out.println("ELIJA UNA DE LAS SIGUIENTES OPCIONES SEGUN LO QUE QUIERA REALIZAR: ");
 				System.out.println("1. Asignar servicio a una reserva:  ");
 				
 				
 				
 			}
+		}
 			
 			
 			
@@ -170,5 +159,5 @@ public class Programa {
 		
 	}
 	
-}
+
 

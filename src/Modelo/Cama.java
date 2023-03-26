@@ -11,5 +11,9 @@ public class Cama {
 		this.tamañoCama = tamaño;
 		this.ocupacion = capacidad;
 	}
+	
+	public int getocupacion() {
+		return ocupacion;
+	}
 
 }
