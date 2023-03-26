@@ -22,4 +22,11 @@ public class DatosHotel {
 	public HashMap<String, Reserva> getReservas(){
 		return reservas;
 	}
+	public void setReserva(String titular, Reserva res){
+		reservas.put(titular, res);
+	}
+	
+	public void setHabitaciones(String identificador, Habitacion habit){
+		habitaciones.put(identificador, habit);
+	}
 }

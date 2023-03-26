@@ -1,14 +1,14 @@
 package Modelo;
-import java.util.Random;
+
 
 public class PersonaldelHotel {
 	private String usuarioSistema;
 	private String contraseñaSistema;
 	
-	public PersonaldelHotel(String nombre ) {
-		Random aleatorio = new Random();
-		this.usuarioSistema = nombre + aleatorio.nextInt(9999);
-		this.contraseñaSistema = Integer.toString(aleatorio.nextInt(999999));
+	public PersonaldelHotel(String usuario, String contraseña ) {
+		
+		this.usuarioSistema = usuario;
+		this.contraseñaSistema = contraseña;
 	}
 	
 	public String getUsuario() {
