@@ -23,7 +23,7 @@ public class PersonaldelHotel {
 		return nombre;
 	}
 
-	public Servicio agregarServicio(String nombre, String contraseña, String tipo, int tarifa ) {
+	public Servicio agregarConsumo(String nombre, String contraseña, String tipo, int tarifa ) {
 		if (contraseña.equals(contraseñaSistema)) {  
 		return new Servicio(nombre, tipo, tarifa);
 	}	
