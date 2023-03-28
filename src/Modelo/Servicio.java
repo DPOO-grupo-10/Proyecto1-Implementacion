@@ -2,7 +2,7 @@ package Modelo;
 
 public class Servicio {
 	private String tipoServicio;
-	private int tarifaServicio;
+	private double tarifaServicio;
 	private String nombreServicio;
 	
 	public Servicio(String n, String ts, int tas){
@@ -11,7 +11,7 @@ public class Servicio {
 		this.tipoServicio = ts;
 	}
 	
-	public int getTarifaServicio() {
+	public double getTarifaServicio() {
 		return tarifaServicio;
 	}
 
@@ -22,4 +22,11 @@ public class Servicio {
 	public String getNombreServicio(){
 		return nombreServicio;
 	}
+	
+	@Override
+	public String toString() {
+		return nombreServicio + ": $" + tarifaServicio;
+	}
+
+	
 }
