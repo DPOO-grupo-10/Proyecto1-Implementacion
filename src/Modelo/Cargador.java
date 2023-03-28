@@ -13,7 +13,7 @@ public class Cargador {
 		System.out.println("A CONTINUACION SE AGREGARAN LAS CAMAS DE LA HABITACION : ");
 		
 		Scanner scan = new Scanner(System.in);
-		ArrayList<Cama> camas = new ArrayList<Cama>();
+		
 		while (haycamas==true) {
 			
 			System.out.println("Ingrese el tipo de cama: ");
