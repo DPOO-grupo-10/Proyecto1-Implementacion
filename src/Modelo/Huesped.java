@@ -3,17 +3,17 @@ package Modelo;
 public class Huesped {
 	private String nombre;
 	private Boolean titular;
-	private Boolean mayorDeEdad;
+	private int edad;
 	private String correoElectronico;
 	private String documento;
 	private String numerocelular;
 	
 	
 	
-	public Huesped(String n,Boolean t,Boolean me, String ce, String doc, String nc) {
+	public Huesped(String n,Boolean t,int me, String ce, String doc, String nc) {
 		this.nombre = n;
 		this.titular = t;
-		this.mayorDeEdad = me;
+		this.edad = me;
 		this.correoElectronico = ce;
 		this.documento = doc;
 		this.numerocelular = nc;
@@ -22,8 +22,8 @@ public class Huesped {
 	public String getnombre() {
 		return nombre;
 	}
-	public Boolean getmayordeedad() {
-		return mayorDeEdad;
+	public int getedad() {
+		return edad;
 	}
 	
 	public String getcorreo() {

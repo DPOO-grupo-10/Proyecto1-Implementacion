@@ -13,6 +13,7 @@ public class Habitacion {
 	private ArrayList<Cama> camas;
 	private int capacidadPersonas;
 	private Boolean ocupada;
+	private int tarifa;
 	
 	
 	
@@ -53,6 +54,10 @@ public class Habitacion {
 	}
 	public Boolean getcocina() {
 		return cocina;
+	}
+	
+	public int gettarifa() {
+		return tarifa;
 	}
 	
 	public void setCamas(String tipocama,int capacidad) {

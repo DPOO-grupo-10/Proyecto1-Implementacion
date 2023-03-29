@@ -2,6 +2,7 @@ package Modelo;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Reserva {
 	
@@ -10,23 +11,24 @@ public class Reserva {
 	private String fechaSalida;
 	private String fechaEntrada;
 	private ArrayList<Huesped> huespedes;
-	private ArrayList<Servicio> serviciosAdquiridos;
-	private String factura;
+	private ArrayList<Habitacion> habitaciones;
+	private ArrayList<Factura> facturas;
 	private int costo;
 	
 	
 	
-	public Reserva(String titu,String fechasalida,String fechaentrada,ArrayList<Huesped> hes){
+	public Reserva(String titu,String fechasalida,String fechaentrada,ArrayList<Huesped> hes, ArrayList<Habitacion> habitaciones){
 		this.titular = titu;
 		this.fechaEntrada = fechaentrada;
 		this.fechaSalida = fechasalida;
-		ArrayList<Servicio> s = new ArrayList<Servicio>();
-		this.serviciosAdquiridos = s;
-		this.factura = "INICIO RESERVA \n";
+		this.habitaciones = habitaciones;
 		this.huespedes = hes;
-		this.costo = 0;
+		this.facturas = new ArrayList<Factura>();
 	}
 	
+	public void setHabitaciones(Habitacion ha) {
+		habitaciones.add( ha);
+	}
 	
 	
 	public String getTitular() {
@@ -41,26 +43,18 @@ public class Reserva {
 	public ArrayList<Huesped> getHuespedes() {
 		return huespedes;
 	}
-	public ArrayList<Servicio> getServicio(){
-		return serviciosAdquiridos;
+	public ArrayList<Habitacion> getHabitaciones(){
+		return habitaciones;
 	}
-	public String getFactura() {
-		this.factura = factura + "***SERVICIOS***" + "\n";
-		for(Servicio unservicio: serviciosAdquiridos) {
-			int tarifa = unservicio.getTarifaServicio();
-			this.costo = costo + tarifa;
-			String tipoServicio = unservicio.getTipoServicio();
-			this.factura = factura + tipoServicio + ": " + Integer.toString(tarifa) + "\n";
-		}
-		
-		
-		// falataria sumar lo de el costo de los dias
-		
-		
-		// al final se muestra el costo total
-		
-		return factura;
+	public ArrayList<Factura> getFactura(){
+		return facturas;
 	}
+	
+	public void setFacturas(Factura fac) {
+		facturas.add(fac);
+	}
+
+
 	
 	
 	
