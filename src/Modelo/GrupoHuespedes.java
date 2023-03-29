@@ -6,6 +6,9 @@ import java .util.Scanner;
 public class GrupoHuespedes {
 	
 	private ArrayList<Huesped> huespedes;
+	
+	
+	
 	public GrupoHuespedes() {
 		this.huespedes = new ArrayList<Huesped>();
 		Boolean  mashuespedes = true;
@@ -20,14 +23,10 @@ public class GrupoHuespedes {
 			String nombre = scan.nextLine();
 			System.out.println("Ingrese correo del nuevo huesped: ");
 			String correo = scan.nextLine();
-			System.out.println("¿Es mayor de edad ? (a: Si b: no): ");
-			String mayorDeEdad = scan.nextLine();
-			Boolean me =false;
-			if (mayorDeEdad == "a") {
-				me = true;
-				
-			}
-			System.out.println("ingrese numero celular: ");
+			System.out.println("Ingrese la edad del huesped: ");
+			int edad = scan.nextInt();
+			
+			System.out.println("ingrese numero celular:( 0 si no tiene) ");
 			String ncelular = scan.nextLine();
 			System.out.println("Es usted el titular de la reserva?: (a: Si b: no) ");
 			String titular = scan.nextLine();
@@ -41,7 +40,7 @@ public class GrupoHuespedes {
 			
 			
 			
-			Huesped huesped = new Huesped(nombre, titu , me, correo, doc, ncelular);
+			Huesped huesped = new Huesped(nombre, titu , edad, correo, doc, ncelular);
 			huespedes.add(huesped);
 			System.out.println("El huesped ha sido agregado con exito ");
 			

@@ -4,6 +4,7 @@ import Modelo.Recepcion;
 import Modelo.Reserva;
 import Modelo.Cargador;
 import Modelo.Habitacion;
+import Modelo.Huesped;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -15,7 +16,7 @@ import Modelo.DatosHotel;
 public class Controlador {
 	
 	
-	
+
 	
 	DatosHotel informacionHotel = new DatosHotel();
 	Recepcion recepcion = new Recepcion();
@@ -126,13 +127,90 @@ public class Controlador {
 		
 	}
 	
-	public void crearReserva(String titu,String fechaf,String fechai) {
+	public void crearReserva(String titu,String fechaf,String fechai, int cantidadhuespedes) {
 		
-		Reserva res = recepcion.crearReserva(titu,fechaf,fechai);
+		
+		
+		// la maxima capacidad de una habitacion son 5 personas y asi va bajando hasta 2
+		
+		int modulo1 = cantidadhuespedes /5;
+		cantidadhuespedes = cantidadhuespedes -(modulo1 * 5);
+		int modulo2 = cantidadhuespedes /4;
+		cantidadhuespedes = cantidadhuespedes -(modulo1 * 3);
+		int modulo3 = cantidadhuespedes /3;
+		cantidadhuespedes = cantidadhuespedes -(modulo1 * 2);
+		int modulo4 = cantidadhuespedes /2;
+		
+		HashMap<Integer,ArrayList<Habitacion>> maphabit = informacionHotel.getHabitacionesPorTipo();
+		ArrayList<Habitacion> listatotal = new ArrayList<Habitacion>();
+		
+		
+		if(modulo1 != 0) {
+			ArrayList<Habitacion> listahab = maphabit.get(modulo1);
+			int size = listahab.size();
+			if (size > modulo1) {
+			for(int i =0;i<modulo1;i++) {
+				Habitacion habitacion = listahab.get(0);
+				
+				listatotal.add(habitacion);
+				listahab.remove(0);
+				informacionHotel.sethabitacionocupada(habitacion);
+				}
+			informacionHotel.sethabitacionesmapa(modulo1, listahab);
+			}
+		}
+		if(modulo2 != 0) {
+			ArrayList<Habitacion> listahab = maphabit.get(modulo2);
+			int size = listahab.size();
+			if (size > modulo2) {
+			for(int i =0;i<modulo2;i++) {
+				Habitacion habitacion = listahab.get(0);
+				listatotal.add(habitacion);
+				listahab.remove(0);
+				informacionHotel.sethabitacionocupada(habitacion);
+				}
+			informacionHotel.sethabitacionesmapa(modulo2, listahab);
+			}
+		}
+		if(modulo3 != 0) {
+			ArrayList<Habitacion> listahab = maphabit.get(modulo3);
+			int size = listahab.size();
+			if (size > modulo3) {
+			for(int i =0;i<modulo3;i++) {
+				Habitacion habitacion = listahab.get(0);
+				listatotal.add(habitacion);
+				listahab.remove(0);
+				informacionHotel.sethabitacionocupada(habitacion);
+				}
+			informacionHotel.sethabitacionesmapa(modulo3, listahab);
+			}
+		}
+		if(modulo4 != 0) {
+			ArrayList<Habitacion> listahab = maphabit.get(modulo4);
+			int size = listahab.size();
+			if (size > modulo4) {
+			for(int i =0;i<modulo4;i++) {
+				Habitacion habitacion = listahab.get(0);
+				listatotal.add(habitacion);
+				listahab.remove(0);
+				informacionHotel.sethabitacionocupada(habitacion);
+				}
+			informacionHotel.sethabitacionesmapa(modulo4, listahab);
+			}
+		}
+		
+		
+		Reserva res = recepcion.crearReserva(titu,fechaf,fechai,listatotal);
+		
+	
+		
 		
 		informacionHotel.setReserva(titu, res);
 		
 	}
+	
+	
+	
 	
 	public String cerrarReserva(String titu) {
 		HashMap<String,Reserva> mapareservas = informacionHotel.getReservas();
@@ -152,10 +230,12 @@ public class Controlador {
 	}
 	
 	
-	public Reserva consultarReservas(String titular,DatosHotel info) {
-		HashMap<String,Reserva> mapa = info.getReservas();
+	public Reserva consultarReservas(String titular) {
+		HashMap<String,Reserva> mapa = informacionHotel.getReservas();
 		Reserva res =  mapa.get(titular);
 		return res;
 		
 	}
+	
+	
 }

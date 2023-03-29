@@ -1,6 +1,9 @@
 package interfaz;
+import java.util.ArrayList;
 import java.util.Scanner;
 import Controlador.Controlador;
+import Modelo.Habitacion;
+import Modelo.Reserva;
 
 public class Programa {
 	
@@ -31,16 +34,15 @@ public class Programa {
 			System.out.println("1. Consultar Reserva ");
 			
 			String opcion = scan.nextLine();
+			
 			if(opcion == "1") {
-				System.out.println("Ingrese el nombre del titular de su cuenta");
-				String titularReserva = scan.nextLine();
-				System.out.println("Ingrese La fecha en la que desea inicia su estadia");
-				String fechaInicial = scan.nextLine();
-				System.out.println("Ingrese la fecha en la cual termina su estadia");
-				String fechaFinal = scan.nextLine();
+				System.out.println("Ingrese el nombre del titular de la cuenta: ");
+				String titu = scan.nextLine();
 				
-				controlador.crearReserva(titularReserva, fechaInicial, fechaFinal);
+				Reserva res = controlador.consultarReservas(titu);
+				// hacemos una forma de que las reservas se vean de forma bonita :)
 			}
+			
 			
 			
 			
@@ -150,8 +152,11 @@ public class Programa {
 					System.out.println("Ingrese la fecha en la cual termina su estadia");
 					String fechaFinal = scan.nextLine();
 					
-					controlador.crearReserva(titularReserva, fechaInicial, fechaFinal);
+					System.out.println("Ingrese la cantidad de personas que se van a hospedar: ");
 					
+					int cantidad = scan.nextInt();
+					
+					controlador.crearReserva(titularReserva, fechaInicial, fechaFinal,cantidad);	
 					
 				}
 				
@@ -175,7 +180,16 @@ public class Programa {
 				System.out.println("++++++++++ BIENVENIDO ++++++++ ");
 				System.out.println("+++++++++++ PERSONAL ++++++++ ");
 				System.out.println("ELIJA UNA DE LAS SIGUIENTES OPCIONES SEGUN LO QUE QUIERA REALIZAR: ");
-				System.out.println("1. Asignar servicio a una reserva:  ");
+				System.out.println("1. Asignar consumo a una habitacion:  ");
+				
+				
+				String opcionServicio = scan.nextLine();
+				
+				
+				if (opcionServicio == "1") {
+					
+					
+				}
 				
 				
 				
@@ -189,7 +203,7 @@ public class Programa {
 			
 			
 			
-			// Ahora se mira que tipo de usuario es y se le asignan funciones segun lo que sea
+			
 		}
 		
 		
