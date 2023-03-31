@@ -1,3 +1,3 @@
 Juan Leonardo Rangel Barrera
-Josue Vega
-Karen
+Josue Vega Valbuena
+Karen Fuentes
