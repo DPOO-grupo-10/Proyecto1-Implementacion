@@ -1,5 +1,6 @@
 package interfaz;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import Controlador.Controlador;
 import Modelo.Habitacion;
@@ -26,7 +27,8 @@ public class Programa {
 		// comunicacion con el controlador**************
 		Controlador controlador = new Controlador();
 		
-		if (navegante == "1") {
+		
+		if (navegante.equals("1")) {
 			
 			
 			
@@ -35,7 +37,7 @@ public class Programa {
 			
 			String opcion = scan.nextLine();
 			
-			if(opcion == "1") {
+			if(opcion.equals("1")) {
 				System.out.println("Ingrese el nombre del titular de la cuenta: ");
 				String titu = scan.nextLine();
 				
@@ -56,7 +58,7 @@ public class Programa {
 		
 		
 		
-		if(navegante == "2") {
+		if(navegante.equals("2") ) {
 			
 			
 			
@@ -90,7 +92,7 @@ public class Programa {
 				
 				String opcionAdmin = scan.nextLine();
 				
-				if (opcionAdmin == "3") {
+				if (opcionAdmin.equals("3")) {
 					System.out.println("Ingrese el nombre de la persona: ");
 					String nombre = scan.nextLine();
 					System.out.println("Ingrese el usuario asignado a esta persona: ");
@@ -115,8 +117,147 @@ public class Programa {
 					autenticador.setUsuarios(usuariopersonal, cotraseña, tipop);
 					
 				}
-				else {
-				controlador.agregarinformacion(opcionAdmin);
+				
+				else if (opcionAdmin.equals("1")) {
+					System.out.println("Ingrese el tipo de Habitacion: ");
+					System.out.println("1. ESTANDAR ");
+					System.out.println("2. SUITE ");
+					System.out.println("3. SUITE DOUBLE ");
+					
+					String opciontipo = scan.nextLine();
+					
+					// tipo habitacion
+					String tipo = "" ;
+					if(opciontipo.equals("1")) {
+						tipo = "ESTANDAR";
+						
+					}
+					if(opciontipo.equals("2")) {
+						tipo = "SUITE";
+						
+					}
+					if(opciontipo.equals("3")) {
+						tipo = "SUITE DOUBLE";
+						
+					}
+					
+					System.out.println("¿ La habitacion tiene Balcon ?: ");
+					System.out.println("1. SI ");
+					System.out.println("2. NO ");
+					
+					String opcionbalcon = scan.nextLine();
+					
+					
+					// tiene balcon?
+					Boolean balcon = false;
+					
+					if(opcionbalcon.equals("1") ) {
+						balcon = true;
+						
+					}
+					if(opcionbalcon.equals("2")) {
+						balcon = false;
+						
+					}
+					
+					
+					System.out.println("¿ La habitacion tiene vista ?: ");
+					System.out.println("1. SI ");
+					System.out.println("2. NO ");
+					
+					String opcionvista = scan.nextLine();
+					
+					
+					// tiene vista??
+					Boolean vista = false;
+					
+					if(opcionvista.equals("1") ) {
+						vista = true;
+						
+					}
+					if(opcionvista.equals("2")) {
+						vista = false;
+						
+					}
+					
+					
+					
+					
+					System.out.println("¿ La habitacion tiene cocina?: ");
+					System.out.println("1. SI ");
+					System.out.println("2. NO ");
+					
+					String opcioncocina = scan.nextLine();
+					// tiene cocina ???
+					Boolean cocina = false;
+					
+					if(opcioncocina.equals("1")) {
+						cocina = true;
+						
+					}
+					if(opcioncocina.equals("2")) {
+						cocina = false;
+						
+					}
+					
+					
+					
+					controlador.agregarHabitaciones(tipo, balcon, vista, cocina);
+				}
+				else if(opcionAdmin.equals("2")){
+					
+					System.out.println("+ CARGADOR DE SERVICIOS+++++++++++++++");
+					System.out.println("Elija el servicio al cual desea cargar: ");
+					System.out.println("1. RESTAURANTE");
+					System.out.println("2. OTRO");
+					
+					
+					
+					String opcionServicios = scan.nextLine();
+					if (opcionServicios.equals("1")) {
+						
+						
+						
+						
+						System.out.println("Elija el cual opcion desea cargar: ");
+						System.out.println("1. PLATO");
+						System.out.println("2. BEBIDA");
+						
+						String opcionrestaurante = scan.nextLine();
+						if(opcionrestaurante.equals("1")) {
+							System.out.println("Ingrese el nombre del plato");
+							String nombrePlato = scan.nextLine();
+							System.out.println("Ingrese el costo del plato");
+							int costoPlato = scan.nextInt();
+							
+							
+							controlador.setPlatosRestaurante(nombrePlato, costoPlato);
+						}
+						if(opcionrestaurante.equals("2")) {
+							System.out.println("Ingrese el nombre de la bebida");
+							String nombreBebida = scan.nextLine();
+							System.out.println("Ingrese el costo de la bebida");
+							int costoBebida = scan.nextInt();
+							
+							
+							
+							controlador.setBebidasrestaurante(nombreBebida, costoBebida);
+						}
+						
+						
+						
+					}
+					else if(opcionServicios.equals("2")) {
+						System.out.println("Ingrese el tipo de servicio que desea agregar: ");
+						String tiposervicio = scan.nextLine();
+						System.out.println("Ingrese la disponibilidad de este servicio: : ");
+						String dispo = scan.nextLine();
+						System.out.println("Ingrese el costo de este servicio: ");
+						int costo = scan.nextInt();
+						// EN PROCESO DISCULPEN...........
+						
+					}
+					
 				}
 				
 				
@@ -142,9 +283,9 @@ public class Programa {
 				String opcionRecepcion = scan.nextLine();
 				
 				
-				if(opcionRecepcion == "1") {
+				if(opcionRecepcion.equals("1")) {
 					
-					
+					 
 					System.out.println("Ingrese el nombre del titular de su cuenta");
 					String titularReserva = scan.nextLine();
 					System.out.println("Ingrese La fecha en la que desea inicia su estadia");
@@ -186,7 +327,29 @@ public class Programa {
 				String opcionServicio = scan.nextLine();
 				
 				
-				if (opcionServicio == "1") {
+				if (opcionServicio.equals("1")) {
+					System.out.println("Ingrese el nombre del huesped que pidio el servicio");
+					String nombrehuesped = scan.nextLine();
+					System.out.println("Ingrese el tipo de servicio que tomo: ");
+					String tipoServicio = scan.nextLine();
+					
+					if(tipoServicio.equals("RESTAURANTE")) {
+						
+						System.out.println("Desea agregar platos ? ");
+						System.out.println("1. Si");
+						System.out.println("2. No");
+						String deseaPlatos = scan.nextLine();
+					// ESTO ESTA EN PROCESO PERDON :(
+						
+						
+						
+						
+						
+						System.out.println("Ingrese las bebidas consumidas: ");
+						
+						
+					}
+					else {}
 					
 					
 				}

@@ -15,10 +15,11 @@ public class Autenticador {
 	
 	public Autenticador() {
 		// tiene que tener un administrador por defecto lo cual se hace en las siguientes lineas de codigo
-		usuariosConContraseña.put("DPOO","12345");
 		// SOLO EXISTE UN ADMINISTRADOR 
-		usuariosConTipo.put("DPOO","ADMINISTRADOR");
+		this.usuariosConContraseña = new HashMap<String,String>();
 		//EXISTEN TRES TIPOS DE USUARIOS: ADMINISTRADOR, RECEPCIONISTA Y PERSONAL DEL HOTEL
+		this.usuariosConTipo = new HashMap<String,String>();
+		this.personaldelhotel = new HashMap<String,PersonaldelHotel>();
 		
 		
 	}

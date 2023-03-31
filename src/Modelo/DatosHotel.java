@@ -5,11 +5,14 @@ import java.util.HashMap;
 
 public class DatosHotel {
 	
-	
 	private HashMap<String,Habitacion> habitaciones  = new HashMap<String,Habitacion>();
 	private HashMap<String,Habitacion> habitacionesOcupadas  = new HashMap<String,Habitacion>();
 	private HashMap<Integer,ArrayList<Habitacion>> habitacionesPorTipo  = new HashMap<Integer,ArrayList<Habitacion>>();
 	private HashMap<String,Servicio> servicios  = new HashMap<String,Servicio>();
+	private HashMap<String,Integer> servicioscosto  = new HashMap<String,Integer>();
+	private HashMap<String,Integer> platosRestaurante = new HashMap<String, Integer>();
+	private HashMap<String,Integer> bebidasRestaurante = new HashMap<String, Integer>();
+	
 	private HashMap<String,Reserva> reservas = new HashMap<String,Reserva>();
 
 	
@@ -27,6 +30,15 @@ public class DatosHotel {
 	}
 	public HashMap<String, Servicio> getServicios(){
 		return servicios;
+	}
+	public HashMap<String, Integer> getServicioscostos(){
+		return servicioscosto;
+	}
+	public HashMap<String, Integer> getBebidasRestaurante(){
+		return bebidasRestaurante;
+	}
+	public HashMap<String, Integer> getPlatosRestaurante(){
+		return platosRestaurante;
 	}
 	public HashMap<String, Reserva> getReservas(){
 		return reservas;
@@ -55,7 +67,15 @@ public class DatosHotel {
 		
 	}
 	
-	public void setServicios(String tiposervicio, Servicio serv){
+	
+	public void setPlatosRestaurante(String nombre, int tarifa) {
+		platosRestaurante.put(nombre, tarifa);
+	}
+	public void setbebidasRestaurante(String nombre ,int tarifa) {
+		bebidasRestaurante.put(nombre, tarifa);
+	}
+	public void setServicios(String tiposervicio,int costo, Servicio serv){
+		servicioscosto.put(tiposervicio, costo);
 		servicios.put(tiposervicio, serv);
 	}
 	

@@ -5,6 +5,9 @@ import Modelo.Reserva;
 import Modelo.Cargador;
 import Modelo.Habitacion;
 import Modelo.Huesped;
+import Modelo.Plato;
+import Modelo.Servicio;
+import Modelo.Restaurante;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -20,110 +23,25 @@ public class Controlador {
 	
 	DatosHotel informacionHotel = new DatosHotel();
 	Recepcion recepcion = new Recepcion();
+	Cargador cargador = new Cargador();
+	Restaurante restaurante = new Restaurante();
 	
-	public void agregarinformacion(String tipodeinformacion) {
-		
-		// 1 = habitaciones 2 = servicios 3 =  personal del hotel
-		
-		Cargador cargador = new Cargador();
-		Scanner scan = new Scanner(System.in);
-		
-		if(tipodeinformacion == "1") {
-			System.out.println("Ingrese el tipo de Habitacion: ");
-			System.out.println("1. ESTANDAR ");
-			System.out.println("2. SUITE ");
-			System.out.println("3. SUITE DOUBLE ");
-			
-			String opciontipo = scan.nextLine();
-			
-			// tipo habitacion
-			String tipo = "" ;
-			if(opciontipo == "1") {
-				tipo = "ESTANDAR";
-				
-			}
-			if(opciontipo == "2") {
-				tipo = "SUITE";
-				
-			}
-			if(opciontipo == "3") {
-				tipo = "SUITE DOUBLE";
-				
-			}
-			
-			System.out.println("¿ La habitacion tiene Balcon ?: ");
-			System.out.println("1. SI ");
-			System.out.println("2. NO ");
-			
-			String opcionbalcon = scan.nextLine();
-			
-			
-			// tiene balcon?
-			Boolean balcon = false;
-			
-			if(opcionbalcon == "1") {
-				balcon = true;
-				
-			}
-			if(opcionbalcon == "2") {
-				balcon = false;
-				
-			}
-			
-			
-			System.out.println("¿ La habitacion tiene vista ?: ");
-			System.out.println("1. SI ");
-			System.out.println("2. NO ");
-			
-			String opcionvista = scan.nextLine();
-			
-			
-			// tiene vista??
-			Boolean vista = false;
-			
-			if(opcionvista == "1") {
-				vista = true;
-				
-			}
-			if(opcionvista == "2") {
-				vista = false;
-				
-			}
-			
-			
-			
-			
-			System.out.println("¿ La habitacion tiene Balcon ?: ");
-			System.out.println("1. SI ");
-			System.out.println("2. NO ");
-			
-			String opcioncocina = scan.nextLine();
-			// tiene cocina ???
-			Boolean cocina = false;
-			
-			if(opcioncocina == "1") {
-				cocina = true;
-				
-			}
-			if(opcioncocina == "2") {
-				cocina = false;
-				
-			}
-			
-			
-			Habitacion habitacion = new Habitacion(tipo,balcon,vista,cocina);
-			
-			
-			cargador.cargarHabitaciones(informacionHotel, habitacion);	
-			
-		}
-		// SERVICIOS
-		if(tipodeinformacion == "2") {}
+	
+	
+	
+	
+	
+	public void agregarHabitaciones(String tipo, Boolean balcon, Boolean vista, Boolean cocina) {
+		Habitacion habitacion = new Habitacion(tipo,balcon,vista,cocina);
 		
 		
+		cargador.cargarHabitaciones(informacionHotel, habitacion);	
 		
-		
-		
+	}
+	
+	public void agreagrServicios(String tipoServicio,String disponibilidad,int costo ) {
+		Servicio servicio = new Servicio(tipoServicio,disponibilidad);
+		cargador.cargarServicios(informacionHotel, servicio,costo);
 		
 	}
 	
@@ -236,6 +154,74 @@ public class Controlador {
 		return res;
 		
 	}
+	// agregar platos 
+	
+	
+	public void setPlatosRestaurante(String nombre, int costo) {
+		String tiposervicio = "PLATO";
+		cargador.cargarRestaurante(tiposervicio, nombre, costo, restaurante);
+		informacionHotel.setbebidasRestaurante(nombre, costo);
+		
+	}
+	
+	
+	
+	// agregar bebidas
+	
+	
+	public void setBebidasrestaurante(String nombre, int costo) {
+		String tiposervicio = "BEBIDA";
+		cargador.cargarRestaurante(tiposervicio, nombre, costo, restaurante);
+		informacionHotel.setbebidasRestaurante(nombre, costo);
+		
+	}
+	
+	
+	
+	// AGREGAR CONSUMO DEL RESTAURANTE
+	
+	
+	public ArrayList<Plato>  setListaPlato() {
+		
+		Scanner scan = new Scanner(System.in);
+		
+		HashMap<String,Integer> mapa = informacionHotel.getPlatosRestaurante();		
+		ArrayList<Plato> listaPlatos  = new ArrayList<Plato>();
+		Boolean sigue =true;
+		while(sigue==true) {
+			System.out.println("Ingrese el nombre del plato: ");
+			String nombre  = scan.nextLine();
+			Integer costo = mapa.get(nombre);
+			if(costo == null) {
+				System.out.println("Lo sentimos pero el nombre que ingreso no combina con ningun plato en a base de datos: ");
+				System.out.println("Porfacor revise que lo este ingresando en mayusculas y sinespacios ni demas caracteres");
+			}
+			else {
+				Plato plato = new Plato(costo,nombre);
+				listaPlatos.add(plato);
+			}
+			
+			System.out.println("Desea continuar agregando platos ?? ");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			String opcion  = scan.nextLine(); 
+			
+			if(opcion.equals("2")) {
+				sigue = false;
+			}
+			
+		}
+		return listaPlatos;
+		 
+		 
+		 
+	}
+	public void setConsumoBebida() {}
+	
+	
+	
+	
 	
 	
 }

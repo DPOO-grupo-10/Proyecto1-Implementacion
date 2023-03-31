@@ -4,19 +4,19 @@ public class Plato {
 	
 	private int tarifa;
 	private String nombrePlato;
-	private int disponibilidad;
 	
 	
 	
-	public Plato(int tar, String np, int disp){
+	
+	public Plato(int tar, String np){
 		this.tarifa = tar;
 		this.nombrePlato = np;
-		this.disponibilidad = disp;
+		
 		
 		
 	}
 	
 	public int gettarifa() {return tarifa;}
 	public String getNombrePlato() {return nombrePlato;}
-	public int getDisponibilidad() {return disponibilidad;}
+	
 }

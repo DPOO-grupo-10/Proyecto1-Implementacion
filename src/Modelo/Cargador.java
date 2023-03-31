@@ -59,16 +59,21 @@ public class Cargador {
 		info.setHabitaciones(identificador, habitacion);
 	}
 	
-	public void cargarServicios(DatosHotel info, Servicio serv) {
-		
-		
-		
-		
-		
-		
-		
+	public void cargarServicios(DatosHotel info, Servicio serv, int costo) {
 		String tipoServicio = serv.getTipoServicio();
-		info.setServicios(tipoServicio, serv);
+		info.setServicios(tipoServicio, costo , serv);
+	}
+	
+	
+	
+	public void cargarRestaurante(String tipo, String nombre, int costo , Restaurante res) {
+		if (tipo == "PLATO") {
+			res.setPlato(nombre,costo);	
+			
+		}
+		else if(tipo == "BEBIDA") {
+			res.setBebida(nombre, costo);
+		}
 	}
 
 }

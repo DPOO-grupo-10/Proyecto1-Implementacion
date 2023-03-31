@@ -2,15 +2,17 @@ package Modelo;
 
 public class Servicio {
 	private String tipoServicio;
-	private int tarifaServcio;
+	private String disponibilidad;
 	
 	
-	public Servicio(){
+	public Servicio(String tipoServicio, String disponibilidad){
+		this.tipoServicio = tipoServicio;
+		this.disponibilidad = disponibilidad;
 		
 	}
 	
-	public int getTarifaServicio() {
-		return tarifaServcio;
+	public String getTarifaServicio() {
+		return disponibilidad;
 	}
 	public String getTipoServicio() {
 		return tipoServicio;
