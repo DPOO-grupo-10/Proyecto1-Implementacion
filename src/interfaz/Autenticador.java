@@ -44,10 +44,13 @@ public class Autenticador {
 	
 	public boolean autenticar(String usuario, String contraseña) {
 		Boolean resultado = false;
+		
 		if(usuariosConContraseña.containsKey(usuario)) {
 			String contramapa;
 			contramapa = usuariosConContraseña.get(usuario);
-			if(contramapa == contraseña) {
+			
+			
+			if(contraseña.equals(contramapa)) {
 				resultado = true;
 			}
 		}
