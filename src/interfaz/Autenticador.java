@@ -16,10 +16,19 @@ public class Autenticador {
 	public Autenticador() {
 		// tiene que tener un administrador por defecto lo cual se hace en las siguientes lineas de codigo
 		// SOLO EXISTE UN ADMINISTRADOR 
+		
+		//usuario: contraseña de ese usuario
 		this.usuariosConContraseña = new HashMap<String,String>();
 		//EXISTEN TRES TIPOS DE USUARIOS: ADMINISTRADOR, RECEPCIONISTA Y PERSONAL DEL HOTEL
+		
+		// usuario : tipodeusuario
 		this.usuariosConTipo = new HashMap<String,String>();
+		
+		// usuario: personal hotel
 		this.personaldelhotel = new HashMap<String,PersonaldelHotel>();
+		
+		usuariosConContraseña.put("ADMINISTRADORDEFAULT", "12345");
+		usuariosConTipo.put("ADMINISTRADORDEFAULT", "ADMINISTRADOR");
 		
 		
 	}

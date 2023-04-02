@@ -11,6 +11,7 @@ public class Habitacion {
 	private Boolean vista;
 	private Boolean cocina;
 	private ArrayList<Cama> camas;
+	private ArrayList<Consumo> consumos;
 	private int capacidadPersonas;
 	private Boolean ocupada;
 	private int tarifa;
@@ -20,10 +21,11 @@ public class Habitacion {
 	public Habitacion(String tipo, Boolean balcon2,Boolean vista2, Boolean cocina2) {
 		this.identificador =Double.toString(Math.random());
 		this.tipoHabitacion = tipo;
-		this.balcon = balcon;
-		this.vista = vista;
+		this.balcon = balcon2;
+		this.vista = vista2;
 		this.cocina = cocina2;
 		this.camas = new ArrayList<Cama>();
+		this.consumos = new ArrayList<Consumo>();
 		this.capacidadPersonas = 0;
 		this.ocupada = false;
 		
@@ -60,9 +62,18 @@ public class Habitacion {
 		return tarifa;
 	}
 	
+	
+	public ArrayList<Consumo> getConsumos(){
+		return consumos;
+	}
+	
 	public void setCamas(String tipocama,int capacidad) {
 		Cama cama = new Cama(tipocama,capacidad);
 		camas.add(cama);
+	}
+	
+	public void setConsumos(Consumo consum) {
+		consumos.add(consum);
 	}
 	
 	

@@ -11,7 +11,7 @@ public class Servicio {
 		
 	}
 	
-	public String getTarifaServicio() {
+	public String getDisponibilidads() {
 		return disponibilidad;
 	}
 	public String getTipoServicio() {
@@ -19,3 +19,4 @@ public class Servicio {
 	}	
 
 }
+

@@ -1,13 +1,17 @@
 package Controlador;
 
 import Modelo.Recepcion;
+
+import Modelo.ConsumoRestaurante;
 import Modelo.Reserva;
+import Modelo.Bebida;
 import Modelo.Cargador;
 import Modelo.Habitacion;
 import Modelo.Huesped;
 import Modelo.Plato;
 import Modelo.Servicio;
 import Modelo.Restaurante;
+import Modelo.Consumo;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -39,7 +43,7 @@ public class Controlador {
 		
 	}
 	
-	public void agreagrServicios(String tipoServicio,String disponibilidad,int costo ) {
+	public void agregarServicios(String tipoServicio,String disponibilidad,int costo ) {
 		Servicio servicio = new Servicio(tipoServicio,disponibilidad);
 		cargador.cargarServicios(informacionHotel, servicio,costo);
 		
@@ -148,10 +152,27 @@ public class Controlador {
 	}
 	
 	
-	public Reserva consultarReservas(String titular) {
+	public void consultarReservas(String titular) {
 		HashMap<String,Reserva> mapa = informacionHotel.getReservas();
 		Reserva res =  mapa.get(titular);
-		return res;
+		System.out.println("Titular : " + res.getTitular());
+		System.out.println("Fecha Salida: " + res.getFechaSalida());
+		System.out.println("Fecha Entrada: " + res.getFechaEntrada());
+		
+		ArrayList<Huesped> huespedes = res.getHuespedes();
+		
+		System.out.println("HUESPEDES");
+		for(Huesped huesped: huespedes) {
+			System.out.println("Huesped : " + huesped.getnombre());
+		}
+		ArrayList<Habitacion> habitaciones = res.getHabitaciones();
+		System.out.println("HABITACIONES");
+		for(Habitacion habitacion: habitaciones) {
+			System.out.println("Identificador habitacion : " + habitacion.getIdentificador());
+		}
+		
+		
+		
 		
 	}
 	// agregar platos 
@@ -179,6 +200,45 @@ public class Controlador {
 	
 	
 	// AGREGAR CONSUMO DEL RESTAURANTE
+	
+	
+	
+	
+	public void setConsumoRestauranteTotal(String id, String agregar, String platos, String bebidas) {
+		HashMap<String,Habitacion> listahabitaciones =  informacionHotel.getHabitaciones();
+		Habitacion habitacion =  listahabitaciones.get(id);
+		// mirar si se pago en caja o se agrega a la habitacion
+		Boolean estaPago = false;
+		if(agregar.equals("2")) {
+			estaPago = true;
+		}
+		
+		// creacion consumo
+		ConsumoRestaurante conRes = new ConsumoRestaurante(id,estaPago);
+		
+		// si desea o no agregar platos a la cuenta de consumo
+		ArrayList<Plato> listaplatos  =  new ArrayList<Plato>();
+		if(platos.equals("1")) {
+			listaplatos = setListaPlato();	
+		}
+		
+		// si desea o no agregar bebidas a la cuenta de consumo
+		
+		ArrayList<Bebida> listabebidas =  new ArrayList<Bebida>();
+		if(bebidas.equals("2")) {
+			listabebidas = setListaBebidas();
+		}
+		
+		
+		conRes.setBebidasConsumidas(listabebidas);
+		conRes.setPlatosConsumidos(listaplatos);
+		
+		habitacion.setConsumos(conRes);
+		informacionHotel.setHabitaciones(id, habitacion);
+		
+	}
+	
+	
 	
 	
 	public ArrayList<Plato>  setListaPlato() {
@@ -217,7 +277,82 @@ public class Controlador {
 		 
 		 
 	}
-	public void setConsumoBebida() {}
+	
+	
+	public ArrayList<Bebida>  setListaBebidas() {
+		
+		Scanner scan = new Scanner(System.in);
+		
+		HashMap<String,Integer> mapa = informacionHotel.getBebidasRestaurante();		
+		ArrayList<Bebida> listabebidas  = new ArrayList<Bebida>();
+		Boolean sigue =true;
+		while(sigue==true) {
+			System.out.println("Ingrese el nombre de la bebida: ");
+			String nombre  = scan.nextLine();
+			Integer costo = mapa.get(nombre);
+			if(costo == null) {
+				System.out.println("Lo sentimos pero el nombre que ingreso no combina con ninguna bebida en a base de datos: ");
+				System.out.println("Por favor revise que lo este ingresando en mayusculas y sin espacios ni demas caracteres");
+			}
+			else {
+				Bebida bebida = new Bebida(costo,nombre);
+				listabebidas.add(bebida);
+			}
+			
+			System.out.println("Desea continuar agregando bebidas ?? ");
+			System.out.println("1. Si");
+			System.out.println("2. No");
+			
+			String opcion  = scan.nextLine(); 
+			
+			if(opcion.equals("2")) {
+				sigue = false;
+			}
+			
+		}
+		return listabebidas;
+		 
+		 
+		 
+	}
+
+
+
+	// Se va a mirar y ver si el consumo existe y si se entonces lo agregamos a lo de la habitacion y ya 
+	public void setConsumoGeneral(String id,String nombre, String agregar) {
+		HashMap<String,Habitacion> listahabitaciones =  informacionHotel.getHabitaciones();
+		Habitacion habitacion =  listahabitaciones.get(id);
+		HashMap<String,Integer> mapaservicios = informacionHotel.getServicioscostos();
+		
+		if (mapaservicios.containsKey(nombre) == false) {
+			System.out.println(" Lo sentimos pero el servicio que desea agregar no esta en la base de datos");
+			System.out.println("Por favor revise detalladamente como ingreso el nombre del servicio");
+			
+		}
+		else {
+			
+			Boolean siagrega = false;
+			if(agregar.equals("1")) {siagrega =true;}
+			
+			
+			int costo = mapaservicios.get(nombre);
+			Consumo consumo = new Consumo(id,nombre,costo,siagrega);
+			
+			
+			habitacion.setConsumos(consumo);
+			informacionHotel.setHabitaciones(id, habitacion);
+		}
+		
+	}
+
+
+	
+	
+
+	
+	
+	
+	
 	
 	
 	

@@ -1,9 +1,7 @@
 package interfaz;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.Scanner;
 import Controlador.Controlador;
-import Modelo.Habitacion;
 import Modelo.Reserva;
 
 public class Programa {
@@ -41,7 +39,9 @@ public class Programa {
 				System.out.println("Ingrese el nombre del titular de la cuenta: ");
 				String titu = scan.nextLine();
 				
-				Reserva res = controlador.consultarReservas(titu);
+				controlador.consultarReservas(titu);
+				
+				// CAMBIAR ESTO PARA QUE EL CONTROLADOR SE ENCARGUE DE ESTA PARTE
 				// hacemos una forma de que las reservas se vean de forma bonita :)
 			}
 			
@@ -57,6 +57,7 @@ public class Programa {
 		
 		
 		
+		// Si el usuario es personal del hotel debe tener usuario y contraseña por lo cual esto
 		
 		if(navegante.equals("2") ) {
 			
@@ -81,6 +82,10 @@ public class Programa {
 			}
 			
 			
+			
+			
+			// Si el usuario es administrador tiene tres tareas
+			
 			if(autenticador.getTipo(usuario) == "ADMINISTRADOR") {
 				System.out.println("++++++++++ BIENVENIDO ++++++++ ");
 				System.out.println("++++++++ ADMINISTRADOR ++++++++ ");
@@ -91,7 +96,7 @@ public class Programa {
 				
 				
 				String opcionAdmin = scan.nextLine();
-				
+				// Para cuando se desea agregar nuevo personal del hotel, el que lo tiene que hacer es el administrador
 				if (opcionAdmin.equals("3")) {
 					System.out.println("Ingrese el nombre de la persona: ");
 					String nombre = scan.nextLine();
@@ -117,6 +122,9 @@ public class Programa {
 					autenticador.setUsuarios(usuariopersonal, cotraseña, tipop);
 					
 				}
+				
+				// Para cuando de desean agregar habitaciones 
+				// Falta que se agreguen segun un archivo csv o algo asi
 				
 				else if (opcionAdmin.equals("1")) {
 					System.out.println("Ingrese el tipo de Habitacion: ");
@@ -204,6 +212,13 @@ public class Programa {
 					
 					controlador.agregarHabitaciones(tipo, balcon, vista, cocina);
 				}
+				
+				
+				
+				// Para cuando el administrador desea cargar servicios incluidos e el hotel
+				// por ejmplo si abren un spa o algo asi nos da el nombre del servicio y cuanto cuesta 
+				
+				// existe una opcion especifica que es para el RESTAURANTE que tiene otras funcionalidades mas especificas
 				else if(opcionAdmin.equals("2")){
 					
 					System.out.println("+ CARGADOR DE SERVICIOS+++++++++++++++");
@@ -214,11 +229,9 @@ public class Programa {
 					
 					
 					String opcionServicios = scan.nextLine();
+					
+					// OPCION RESTAURANTE 
 					if (opcionServicios.equals("1")) {
-						
-						
-						
-						
 						System.out.println("Elija el cual opcion desea cargar: ");
 						System.out.println("1. PLATO");
 						System.out.println("2. BEBIDA");
@@ -246,7 +259,11 @@ public class Programa {
 						
 						
 						
+						
+						
+						
 					}
+					// OPCION DIFERENTE DE RESTAURANTE 
 					else if(opcionServicios.equals("2")) {
 						System.out.println("Ingrese el tipo de servicio que desea agregar: ");
 						String tiposervicio = scan.nextLine();
@@ -254,7 +271,7 @@ public class Programa {
 						String dispo = scan.nextLine();
 						System.out.println("Ingrese el costo de este servicio: ");
 						int costo = scan.nextInt();
-						// EN PROCESO DISCULPEN...........
+						controlador.agregarServicios(tiposervicio, dispo, costo);
 						
 					}
 					
@@ -272,6 +289,8 @@ public class Programa {
 				
 			
 			
+			// Aca se pasa si el usuario es recepcionista por lo cual tiene otras funciones
+			
 			
 			if(autenticador.getTipo(usuario) == "RECEPCIONISTA") {
 				System.out.println("++++++++++ BIENVENIDO ++++++++ ");
@@ -282,7 +301,7 @@ public class Programa {
 				
 				String opcionRecepcion = scan.nextLine();
 				
-				
+				// CREAR RESERVA
 				if(opcionRecepcion.equals("1")) {
 					
 					 
@@ -309,6 +328,8 @@ public class Programa {
 					System.out.println("A continuacion se muestra la factura de la reserva: ");
 					System.out.println(factura);
 					
+					// mirar bien lo de sacar factura porque esta bien curioso
+					
 				}
 				
 				
@@ -317,39 +338,77 @@ public class Programa {
 				
 			}
 			
+			
+			// Aca se pasa si es cualquier personal del hotel entonces solo tiene la facultad de agregar servicios: 
 			if(autenticador.getTipo(usuario) == "PERSONAL DEL HOTEL") {
 				System.out.println("++++++++++ BIENVENIDO ++++++++ ");
 				System.out.println("+++++++++++ PERSONAL ++++++++ ");
 				System.out.println("ELIJA UNA DE LAS SIGUIENTES OPCIONES SEGUN LO QUE QUIERA REALIZAR: ");
 				System.out.println("1. Asignar consumo a una habitacion:  ");
 				
+				// Le puede asignar el conumo a cierta habitacion dependiendo del id, por lo cual entonces 
+				// sacamos los consumos que hace una habitacion y una reserva en general
 				
+				
+				// puede estar pago ya o no
+				// la impresion de esto se haria en las facturas poniendo en un lado la forma de pagado y los otros son los no pagados
 				String opcionServicio = scan.nextLine();
 				
 				
 				if (opcionServicio.equals("1")) {
-					System.out.println("Ingrese el nombre del huesped que pidio el servicio");
-					String nombrehuesped = scan.nextLine();
+					System.out.println("INGRESE EL ID DE LA HABITACION EN LA QUE SE HOSPEDA EL CLIENTE:");
+					String identificador = scan.nextLine();
 					System.out.println("Ingrese el tipo de servicio que tomo: ");
 					String tipoServicio = scan.nextLine();
 					
+					
+					
+					// si el servicio es de restaurante entonces....
+					// mira si comio platos o no?
+					// mira si tomo algo o no?
+					// en cada repeticion solo da el nombre del plato y lo deberia agregar al consumo 
+					//que se hace por parte de el cliente tambien tiene que tener CADA CONSUMO si esta pagado o no
+					
 					if(tipoServicio.equals("RESTAURANTE")) {
+						System.out.println("Desea agregarlo a la habitacion o pagarlo de una vez :");
+						System.out.println("1. Agregar a la habitacion");
+						System.out.println("2. Pagar de una vez");	
+						String agregar = scan.nextLine();
 						
-						System.out.println("Desea agregar platos ? ");
+						
+						
+						System.out.println("Se consumieron platos ? ");
 						System.out.println("1. Si");
 						System.out.println("2. No");
 						String deseaPlatos = scan.nextLine();
-					// ESTO ESTA EN PROCESO PERDON :(
+						
+						System.out.println("Se consumieron bebidas ? ");
+						System.out.println("1. Si");
+						System.out.println("2. No");
+						String deseaBebidas = scan.nextLine();
+					
+						
+						
+						controlador.setConsumoRestauranteTotal(identificador, agregar, deseaPlatos, deseaBebidas);
 						
 						
 						
-						
-						
-						System.out.println("Ingrese las bebidas consumidas: ");
-						
+						System.out.println("SE AGREGARON LOS PLATOS Y BEBIDAS CON EXITO");
 						
 					}
-					else {}
+					
+					// si el servicio no es de restaurante entonces es mas facil porque solo seria hacer lo de buscar y dar el precio
+					// y saleeeeeeeeeeeee
+					else if (tipoServicio.equals("2")){
+						
+						System.out.println("Ingrese el nombre del servicio que se utilizo: ");
+						String nombre = scan.nextLine();
+						System.out.println("1. Agregar a la habitacion");
+						System.out.println("2. Pagar de una vez");	
+						String agregar = scan.nextLine();
+						controlador.setConsumoGeneral(identificador, nombre, agregar);
+						System.out.println("Quedo agregado con exito el consumo :)");
+					}
 					
 					
 				}

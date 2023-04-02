@@ -2,26 +2,25 @@ package Modelo;
 
 import java.util.ArrayList;
 
-public class ConsumoRestaurante {
+public class ConsumoRestaurante extends Consumo{
 	
 	private ArrayList<Plato> platosConsumidos;
 	private ArrayList<Bebida> bebidasConsumidas;
+	
 	private int tarifaTotal;
 	
 	
 	
-	public ConsumoRestaurante(){
-		this.platosConsumidos = new ArrayList<Plato>();
-		this.bebidasConsumidas = new ArrayList<Bebida>();
-		this.tarifaTotal = 0;
+	public ConsumoRestaurante(String id, Boolean estaPago){
+		super(id,"RESTAURANTE",0,estaPago);
 	}
 	
 	
-	public void setPlatosConsumidos(Plato plato) {
-		platosConsumidos.add(plato);
+	public void setPlatosConsumidos(ArrayList<Plato> listaPlatos) {
+		this.platosConsumidos = listaPlatos;
 	}
-	public void setBebidasConsumidas(Bebida bebida) {
-		bebidasConsumidas.add(bebida);
+	public void setBebidasConsumidas(ArrayList<Bebida> listabebidas) {
+		this.bebidasConsumidas = listabebidas;
 	}
 	public void setTarifa() {
 		for(Bebida unabebida: bebidasConsumidas) {

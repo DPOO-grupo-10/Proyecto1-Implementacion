@@ -17,5 +17,14 @@ public class Consumo {
 	public int getCostoServicio() {
 		return costoServicio;
 	}
+	public String getdidentifiacodrHabitacion() {
+		return identificadorHabitacion;
+	}
+	public String gettipoServicio() {
+		return tipoServicio;
+	}
+	public Boolean getEstaPago() {
+		return estaPago;
+	}
 
 }
