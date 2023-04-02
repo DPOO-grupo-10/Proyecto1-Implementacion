@@ -1,5 +1,5 @@
 package Controlador;
-
+import java.io.File;
 import Modelo.Recepcion;
 
 import Modelo.ConsumoRestaurante;
@@ -41,6 +41,12 @@ public class Controlador {
 		
 		cargador.cargarHabitaciones(informacionHotel, habitacion);	
 		
+	}
+	
+	
+	public void agregarHabitacionPorArchivo(String ruta) {
+		
+		File archivo = new File(ruta);
 	}
 	
 	public void agregarServicios(String tipoServicio,String disponibilidad,int costo ) {

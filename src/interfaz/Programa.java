@@ -41,8 +41,8 @@ public class Programa {
 				
 				controlador.consultarReservas(titu);
 				
-				// CAMBIAR ESTO PARA QUE EL CONTROLADOR SE ENCARGUE DE ESTA PARTE
-				// hacemos una forma de que las reservas se vean de forma bonita :)
+				
+				
 			}
 			
 			
@@ -86,18 +86,27 @@ public class Programa {
 			
 			// Si el usuario es administrador tiene tres tareas
 			
-			if(autenticador.getTipo(usuario) == "ADMINISTRADOR") {
+			if(autenticador.getTipo(usuario).equals("ADMINISTRADOR")) {
+				
+				
+				
+				
+				Boolean seguiradmin = true;
+				
+				
+				while(seguiradmin == true) {
 				System.out.println("++++++++++ BIENVENIDO ++++++++ ");
 				System.out.println("++++++++ ADMINISTRADOR ++++++++ ");
 				System.out.println("ELIJA UNA DE LAS SIGUIENTES OPCIONES SEGUN LO QUE QUIERA REALIZAR: ");
 				System.out.println("1. Agregar habitaciones ");
 				System.out.println("2. Agregar servicios ");
 				System.out.println("3. Agregar Personal del hotel ");
+				System.out.println("4. Salir Aplicacion ");
 				
 				
-				String opcionAdmin = scan.nextLine();
+				int opcionAdmin = scan.nextInt();
 				// Para cuando se desea agregar nuevo personal del hotel, el que lo tiene que hacer es el administrador
-				if (opcionAdmin.equals("3")) {
+				if (opcionAdmin == 3) {
 					System.out.println("Ingrese el nombre de la persona: ");
 					String nombre = scan.nextLine();
 					System.out.println("Ingrese el usuario asignado a esta persona: ");
@@ -126,92 +135,131 @@ public class Programa {
 				// Para cuando de desean agregar habitaciones 
 				// Falta que se agreguen segun un archivo csv o algo asi
 				
-				else if (opcionAdmin.equals("1")) {
-					System.out.println("Ingrese el tipo de Habitacion: ");
-					System.out.println("1. ESTANDAR ");
-					System.out.println("2. SUITE ");
-					System.out.println("3. SUITE DOUBLE ");
+				else if (opcionAdmin == 1) {
 					
-					String opciontipo = scan.nextLine();
+					System.out.println("De que forma desea ingresar las habitaciones: ");
+					System.out.println("1. Por un archivo");
+					System.out.println("2. Una por una ");
 					
-					// tipo habitacion
-					String tipo = "" ;
-					if(opciontipo.equals("1")) {
-						tipo = "ESTANDAR";
+					String ingreso  =  scan.nextLine();
+					
+					if(ingreso.equals("1")) {
+						
+						
+						System.out.println("Cada linea del archivo debe tener el siguiente formato: ");
+						System.out.println("TIPO HABITACION, TIENE BALCON (SI/NO) ,TIENE VISTA (SI/NO),TIENE COCINA (SI/NO) ");
+						System.out.println("Ingrese la ruta del archivo que desea ingresar: ");
+						String rutaArchivo = scan.nextLine();
+						controlador.agregarHabitacionPorArchivo(rutaArchivo);
 						
 					}
-					if(opciontipo.equals("2")) {
-						tipo = "SUITE";
+					else if (ingreso.equals("2")) {
 						
-					}
-					if(opciontipo.equals("3")) {
-						tipo = "SUITE DOUBLE";
+						Boolean habitacionesseguir = true;
 						
-					}
+						while(habitacionesseguir) {
 					
-					System.out.println("¿ La habitacion tiene Balcon ?: ");
-					System.out.println("1. SI ");
-					System.out.println("2. NO ");
-					
-					String opcionbalcon = scan.nextLine();
-					
-					
-					// tiene balcon?
-					Boolean balcon = false;
-					
-					if(opcionbalcon.equals("1") ) {
-						balcon = true;
+						System.out.println("Ingrese el tipo de Habitacion: ");
+						System.out.println("1. ESTANDAR ");
+						System.out.println("2. SUITE ");
+						System.out.println("3. SUITE DOUBLE ");
 						
-					}
-					if(opcionbalcon.equals("2")) {
-						balcon = false;
+						int opciontipo = scan.nextInt();
+					
+						// tipo habitacion
+						String tipo = "" ;
+						if(opciontipo == 1) {
+							tipo = "ESTANDAR";
+							
+						}	
+						if(opciontipo == 2) {
+							tipo = "SUITE";
+							
+						}
+						if(opciontipo == 3) {
+							tipo = "SUITE DOUBLE";
+							
+						}	
+					
+						System.out.println("¿ La habitacion tiene Balcon ?: ");
+						System.out.println("1. SI ");
+						System.out.println("2. NO ");
+					
+						int opcionbalcon = scan.nextInt();
+					
+					
+						// tiene balcon?
+						Boolean balcon = false;
+					
+						if(opcionbalcon == 1 ) {
+							balcon = true;
 						
-					}
-					
-					
-					System.out.println("¿ La habitacion tiene vista ?: ");
-					System.out.println("1. SI ");
-					System.out.println("2. NO ");
-					
-					String opcionvista = scan.nextLine();
-					
-					
-					// tiene vista??
-					Boolean vista = false;
-					
-					if(opcionvista.equals("1") ) {
-						vista = true;
+						}
+						if(opcionbalcon == 2) {
+							balcon = false;
 						
-					}
-					if(opcionvista.equals("2")) {
-						vista = false;
+						}
+					
+					
+						System.out.println("¿ La habitacion tiene vista ?: ");
+						System.out.println("1. SI ");
+						System.out.println("2. NO ");
+					
+						int opcionvista = scan.nextInt();
+					
+					
+						// tiene vista??
+						Boolean vista = false;
 						
-					}
-					
-					
-					
-					
-					System.out.println("¿ La habitacion tiene cocina?: ");
-					System.out.println("1. SI ");
-					System.out.println("2. NO ");
-					
-					String opcioncocina = scan.nextLine();
-					// tiene cocina ???
-					Boolean cocina = false;
-					
-					if(opcioncocina.equals("1")) {
-						cocina = true;
+						if(opcionvista== 1 ) {
+							vista = true;
+							
+						}
+						if(opcionvista== 2) {
+							vista = false;
 						
-					}
-					if(opcioncocina.equals("2")) {
-						cocina = false;
+						}
+					
+					
+					
+					
+						System.out.println("¿ La habitacion tiene cocina?: ");
+						System.out.println("1. SI ");
+						System.out.println("2. NO ");
+					
+						int opcioncocina = scan.nextInt();
+						// tiene cocina ???
+						Boolean cocina = false;
+					
+						if(opcioncocina == 1) {
+							cocina = true;
 						
+						}
+						if(opcioncocina==2) {
+							cocina = false;
+							
+						}
+					
+					
+					
+						controlador.agregarHabitaciones(tipo, balcon, vista, cocina);
+						System.out.println("Se ha agregado la habitacion con exito: ");
+						
+						System.out.println("Desea agregar mas habitaciones? ");
+						System.out.println("1. Si ");
+						System.out.println("2. No");
+						
+						int mashabitacion = scan.nextInt();
+						if(mashabitacion == 2) {habitacionesseguir = false; }
+						
+						}
+						
+					
 					}
 					
-					
-					
-					controlador.agregarHabitaciones(tipo, balcon, vista, cocina);
+				
 				}
+				
 				
 				
 				
@@ -219,7 +267,7 @@ public class Programa {
 				// por ejmplo si abren un spa o algo asi nos da el nombre del servicio y cuanto cuesta 
 				
 				// existe una opcion especifica que es para el RESTAURANTE que tiene otras funcionalidades mas especificas
-				else if(opcionAdmin.equals("2")){
+				else if(opcionAdmin == 2){
 					
 					System.out.println("+ CARGADOR DE SERVICIOS+++++++++++++++");
 					System.out.println("Elija el servicio al cual desea cargar: ");
@@ -277,12 +325,9 @@ public class Programa {
 					
 				}
 				
-				
-				
-				
+				else if(opcionAdmin == 4) {seguiradmin = false;}
 					
-					
-					
+				}
 				}
 				
 				

@@ -17,7 +17,14 @@ public class DatosHotel {
 
 	
 	
-	
+	public DatosHotel() {
+		habitacionesPorTipo.put(5, new ArrayList<Habitacion>());
+		habitacionesPorTipo.put(4, new ArrayList<Habitacion>());
+		habitacionesPorTipo.put(3, new ArrayList<Habitacion>());
+		habitacionesPorTipo.put(2, new ArrayList<Habitacion>());
+		habitacionesPorTipo.put(1, new ArrayList<Habitacion>());
+		
+	}
 	
 	public HashMap<String,Habitacion> getHabitaciones(){
 		return habitaciones;
@@ -49,6 +56,7 @@ public class DatosHotel {
 	
 	public void setHabitaciones(String identificador, Habitacion habit){
 		int capacidad = habit.getCapacidadPersonas();
+		System.out.println(capacidad);
 		ArrayList<Habitacion> lista = habitacionesPorTipo.get(capacidad);
 		lista.add(habit);
 		

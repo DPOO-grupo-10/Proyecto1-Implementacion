@@ -40,22 +40,29 @@ public class Cargador {
 			System.out.println("Ingrese la capacidad de personas en la cama: ");
 			
 			int capacidad = scan.nextInt();
+			System.out.println("Desea agregar mas camas: ");
+			System.out.println("1. si ");
+			System.out.println("2. no ");
+			int deseacamas = scan.nextInt();
+			System.out.println(deseacamas);
+			
+			if(deseacamas == 2) {
+				haycamas =false;	
+			}
+			
 			
 			
 			habitacion.setCamas(tipocama, capacidad);
 			
 			
-			System.out.println("Desea agregar mas camas ? ");
-			System.out.println("1. Si");
-			System.out.println("2. No");
-			String desea = scan.nextLine();
-			if(desea == "2") {
-				haycamas = false;
-			}			
+			
+			
+				
 		}
 		
 		
 		String identificador = habitacion.getIdentificador();
+		habitacion.setCapacidadPersonas();
 		info.setHabitaciones(identificador, habitacion);
 	}
 	
