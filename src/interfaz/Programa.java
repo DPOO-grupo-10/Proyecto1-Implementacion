@@ -18,33 +18,36 @@ public class Programa {
 		System.out.println("1. CLIENTE ");
 		System.out.println("2. PERSONAL DEL HOTEL ");
 		
-		String navegante = scan.nextLine();
+		int navegante = scan.nextInt();
 		
 		
 		// comunicacion con el controlador**************
 		Controlador controlador = new Controlador();
 		
 		
-		if (navegante.equals("1")) {
+		if (navegante == 1) {
+			Boolean sigueCliente = true;
+			while(sigueCliente == true){
 			
-			
-			
+			System.out.println("*****CLIENTE****** ");
 			System.out.println("Elija la opcion que desea utilizar: ");
 			System.out.println("1. Consultar Reserva ");
+			System.out.println("2. Salir de la aplicacion");
+			Scanner scaner2 = new Scanner(System.in);
+			int opcion = scaner2.nextInt();
 			
-			String opcion = scan.nextLine();
 			
-			if(opcion.equals("1")) {
+			if(opcion == 1) {
 				System.out.println("Ingrese el nombre del titular de la cuenta: ");
-				String titu = scan.nextLine();
-				
-				controlador.consultarReservas(titu);
-				
-				
-				
+				Scanner scaner = new Scanner(System.in);
+				String titu = scaner.nextLine();
+				controlador.consultarReservas(titu);	
+			}
+			if(opcion ==2){
+				sigueCliente = false;
 			}
 			
-			
+		}
 			
 			
 		}
@@ -58,7 +61,7 @@ public class Programa {
 		
 		// Si el usuario es personal del hotel debe tener usuario y contraseña por lo cual esto
 		
-		if(navegante.equals("2") ) {
+		if(navegante == 2 ) {
 			
 			
 			
@@ -70,12 +73,17 @@ public class Programa {
 			Autenticador autenticador = new Autenticador();
 			while(autorizado == false) {
 				System.out.println(" Ingrese su usuario : ");
-				usuario = scan.nextLine();
+				Scanner scaner3 = new Scanner(System.in);
+				usuario = scaner3.nextLine();
 				System.out.println(" Ingrese su contraseña : ");
-				String contraseña = scan.nextLine();
+				Scanner scaner4 = new Scanner(System.in);
+				String contraseña = scaner4.nextLine();
 				Boolean estaEnSistema = autenticador.autenticar(usuario, contraseña);
 				if (estaEnSistema == true) {
 					autorizado = true;
+				}
+				else{
+					System.out.println("El usuario o la contraseña no estan correctos por favor digitelos nuevamente");
 				}
 			
 			}
@@ -102,22 +110,25 @@ public class Programa {
 				System.out.println("3. Agregar Personal del hotel ");
 				System.out.println("4. Salir Aplicacion ");
 				
-				
-				int opcionAdmin = scan.nextInt();
+				Scanner scaner9 = new Scanner(System.in);
+				int opcionAdmin = scaner9.nextInt();
 				// Para cuando se desea agregar nuevo personal del hotel, el que lo tiene que hacer es el administrador
 				if (opcionAdmin == 3) {
 					System.out.println("Ingrese el nombre de la persona: ");
-					String nombre = scan.nextLine();
+					Scanner scaner5 = new Scanner(System.in);
+					String nombre = scaner5.nextLine();
 					System.out.println("Ingrese el usuario asignado a esta persona: ");
-					String usuariopersonal = scan.nextLine();
+					Scanner scaner6 = new Scanner(System.in);
+					String usuariopersonal = scaner6.nextLine();
 					System.out.println("Ingrese la contraseña asignada a esta persona:  ");
-					String cotraseña = scan.nextLine();
+					Scanner scaner7 = new Scanner(System.in);
+					String cotraseña = scaner7.nextLine();
 					System.out.println("Ingrese el tipo de personal que es:");
 					System.out.println("1. PERSONAL GENERAL");
 					System.out.println("2. RECEPCIONISTA");
 					
-					
-					String opcionpersonal = scan.nextLine();
+					Scanner scaner8 = new Scanner(System.in);
+					String opcionpersonal = scaner8.nextLine();
 					String tipop="" ;
 					if(opcionpersonal == "1") {
 						tipop = "PERSONAL DEL HOTEL";
@@ -129,6 +140,8 @@ public class Programa {
 					autenticador.setPersonaldelHotel(nombre, usuariopersonal, cotraseña);
 					autenticador.setUsuarios(usuariopersonal, cotraseña, tipop);
 					
+					System.out.println("EL PERSONAL FUE ACTUALIZADO CON EXITO");
+					
 				}
 				
 				// Para cuando de desean agregar habitaciones 
@@ -139,8 +152,8 @@ public class Programa {
 					System.out.println("De que forma desea ingresar las habitaciones: ");
 					System.out.println("1. Por un archivo");
 					System.out.println("2. Una por una ");
-					
-					String ingreso  =  scan.nextLine();
+					Scanner scaner10 = new Scanner(System.in);
+					String ingreso  =  scaner10.nextLine();
 					
 					if(ingreso.equals("1")) {
 						
@@ -148,8 +161,10 @@ public class Programa {
 						System.out.println("Cada linea del archivo debe tener el siguiente formato: ");
 						System.out.println("TIPO HABITACION, TIENE BALCON (SI/NO) ,TIENE VISTA (SI/NO),TIENE COCINA (SI/NO) ");
 						System.out.println("Ingrese la ruta del archivo que desea ingresar: ");
-						String rutaArchivo = scan.nextLine();
+						Scanner scaner11 = new Scanner(System.in);
+						String rutaArchivo = scaner11.nextLine();
 						controlador.agregarHabitacionPorArchivo(rutaArchivo);
+						System.out.println("Se han agregado las habitaciones con exito");
 						
 					}
 					else if (ingreso.equals("2")) {
@@ -249,7 +264,7 @@ public class Programa {
 						System.out.println("2. No");
 						
 						int mashabitacion = scan.nextInt();
-						if(mashabitacion == 2) {habitacionesseguir = false; }
+						if(mashabitacion == 2) {habitacionesseguir = false; System.out.println("SE AGREGARON LAS HABITACIONES CON EXITO");}
 						
 						}
 						
@@ -268,40 +283,49 @@ public class Programa {
 				// existe una opcion especifica que es para el RESTAURANTE que tiene otras funcionalidades mas especificas
 				else if(opcionAdmin == 2){
 					
-					System.out.println("+ CARGADOR DE SERVICIOS+++++++++++++++");
+					System.out.println("++++++++++++ CARGADOR DE SERVICIOS+++++++++++++++");
 					System.out.println("Elija el servicio al cual desea cargar: ");
 					System.out.println("1. RESTAURANTE");
 					System.out.println("2. OTRO");
 					
 					
-					
-					String opcionServicios = scan.nextLine();
+					Scanner scaner14 = new Scanner(System.in);
+					String opcionServicios = scaner14.nextLine();
 					
 					// OPCION RESTAURANTE 
 					if (opcionServicios.equals("1")) {
 						System.out.println("Elija el cual opcion desea cargar: ");
 						System.out.println("1. PLATO");
 						System.out.println("2. BEBIDA");
-						
-						String opcionrestaurante = scan.nextLine();
+						Scanner scaner15 = new Scanner(System.in);
+						String opcionrestaurante = scaner15.nextLine();
 						if(opcionrestaurante.equals("1")) {
 							System.out.println("Ingrese el nombre del plato");
-							String nombrePlato = scan.nextLine();
+							Scanner scaner16 = new Scanner(System.in);
+							String nombrePlato = scaner16.nextLine();
 							System.out.println("Ingrese el costo del plato");
-							int costoPlato = scan.nextInt();
+							Scanner scaner17 = new Scanner(System.in);
+							int costoPlato = scaner17.nextInt();
 							
 							
 							controlador.setPlatosRestaurante(nombrePlato, costoPlato);
+							
+							System.out.println("SE CARGARON LOS PLATOS CON EXITO");
 						}
 						if(opcionrestaurante.equals("2")) {
 							System.out.println("Ingrese el nombre de la bebida");
-							String nombreBebida = scan.nextLine();
+							Scanner scaner18 = new Scanner(System.in);
+							String nombreBebida = scaner18.nextLine();
 							System.out.println("Ingrese el costo de la bebida");
-							int costoBebida = scan.nextInt();
+							Scanner scaner19 = new Scanner(System.in);
+							int costoBebida = scaner19.nextInt();
 							
 							
 							
 							controlador.setBebidasrestaurante(nombreBebida, costoBebida);
+							System.out.println("SE CARGARON LAS BEBIDAS CON EXITO");
+							
+							
 						}
 						
 						
@@ -313,12 +337,16 @@ public class Programa {
 					// OPCION DIFERENTE DE RESTAURANTE 
 					else if(opcionServicios.equals("2")) {
 						System.out.println("Ingrese el tipo de servicio que desea agregar: ");
-						String tiposervicio = scan.nextLine();
+						Scanner scaner19 = new Scanner(System.in);
+						String tiposervicio = scaner19.nextLine();
 						System.out.println("Ingrese la disponibilidad de este servicio: : ");
-						String dispo = scan.nextLine();
+						Scanner scaner20 = new Scanner(System.in);
+						String dispo = scaner20.nextLine();
 						System.out.println("Ingrese el costo de este servicio: ");
-						int costo = scan.nextInt();
+						Scanner scaner21 = new Scanner(System.in);
+						int costo = scaner21.nextInt();
 						controlador.agregarServicios(tiposervicio, dispo, costo);
+						System.out.println("SE CARGO EL SERVICIO CON EXITO");
 						
 					}
 					
@@ -337,37 +365,51 @@ public class Programa {
 			
 			
 			if(autenticador.getTipo(usuario) == "RECEPCIONISTA") {
+				
+				Boolean sigueRecepcion = true;
+				
+				
+				while(sigueRecepcion == true) {
+				
 				System.out.println("++++++++++ BIENVENIDO ++++++++ ");
 				System.out.println("++++++++++ A RECEPCION ++++++++ ");
 				System.out.println("ELIJA UNA DE LAS SIGUIENTES OPCIONES SEGUN LO QUE QUIERA REALIZAR: ");
 				System.out.println("1. Crear Reserva  ");
 				System.out.println("2. Cerrar Reserva ");
+				System.out.println("3. Salir de la aplicacion ");
 				
-				String opcionRecepcion = scan.nextLine();
+				
+				
+				Scanner scaner22 = new Scanner(System.in);
+				String opcionRecepcion = scaner22.nextLine();
 				
 				// CREAR RESERVA
 				if(opcionRecepcion.equals("1")) {
 					
 					 
 					System.out.println("Ingrese el nombre del titular de su cuenta");
-					String titularReserva = scan.nextLine();
+					Scanner scaner23 = new Scanner(System.in);
+					String titularReserva = scaner23.nextLine();
 					System.out.println("Ingrese La fecha en la que desea inicia su estadia");
-					String fechaInicial = scan.nextLine();
+					Scanner scaner24 = new Scanner(System.in);
+					String fechaInicial = scaner24.nextLine();
 					System.out.println("Ingrese la fecha en la cual termina su estadia");
-					String fechaFinal = scan.nextLine();
+					Scanner scaner25 = new Scanner(System.in);
+					String fechaFinal = scaner25.nextLine();
 					
 					System.out.println("Ingrese la cantidad de personas que se van a hospedar: ");
-					
-					int cantidad = scan.nextInt();
+					Scanner scaner26 = new Scanner(System.in);
+					int cantidad = scaner26.nextInt();
 					
 					controlador.crearReserva(titularReserva, fechaInicial, fechaFinal,cantidad);	
-					
+					System.out.println("LA RESERVA HA SIDO HECHA CON EXITO CONTINUE CON SU ESTADIA :)");
 				}
 				
-				if(opcionRecepcion =="2") {
+				if(opcionRecepcion.equals("2")) {
 					System.out.println("Ingrese el nombre del titular: ");
 					System.out.println("(La persona a la cual esta asignada la reserva)");
-					String nombretitu = scan.nextLine();
+					Scanner scaner27 = new Scanner(System.in);
+					String nombretitu = scaner27.nextLine();
 					String factura = controlador.cerrarReserva(nombretitu);
 					System.out.println("A continuacion se muestra la factura de la reserva: ");
 					System.out.println(factura);
@@ -376,9 +418,11 @@ public class Programa {
 					
 				}
 				
+				if(opcionRecepcion.equals("3")) {sigueRecepcion = false;}
 				
 				
 				
+				}
 				
 			}
 			

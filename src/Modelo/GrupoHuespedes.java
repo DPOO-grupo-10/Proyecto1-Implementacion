@@ -18,25 +18,31 @@ public class GrupoHuespedes {
 		
 		while(mashuespedes == true) {
 			
-			Scanner scan = new Scanner(System.in);
+			
 			System.out.println("Ingrese nombre del nuevo huesped: ");
+			Scanner scan = new Scanner(System.in);
 			String nombre = scan.nextLine();
 			System.out.println("Ingrese correo del nuevo huesped: ");
-			String correo = scan.nextLine();
+			Scanner scaner1 = new Scanner(System.in);
+			String correo = scaner1.nextLine();
 			System.out.println("Ingrese la edad del huesped: ");
-			int edad = scan.nextInt();
+			Scanner scaner2 = new Scanner(System.in);
+			int edad = scaner2.nextInt();
 			
 			System.out.println("ingrese numero celular:( 0 si no tiene) ");
-			String ncelular = scan.nextLine();
+			Scanner scaner3 = new Scanner(System.in);
+			String ncelular = scaner3.nextLine();
 			System.out.println("Es usted el titular de la reserva?: (a: Si b: no) ");
-			String titular = scan.nextLine();
+			Scanner scaner4 = new Scanner(System.in);
+			String titular = scaner4.nextLine();
 			Boolean titu =false;
-			if (titular == "a") {
+			if (titular.equals("a")) {
 				titu = true;
 				
 			}
 			System.out.println("Ingrese el documento del nuevo huesped : ");
-			String doc = scan.nextLine();
+			Scanner scaner5 = new Scanner(System.in);
+			String doc = scaner5.nextLine();
 			
 			
 			
@@ -45,9 +51,10 @@ public class GrupoHuespedes {
 			System.out.println("El huesped ha sido agregado con exito ");
 			
 			System.out.println("Desea agregar mas huespedes: a: Si b: No ");
-			String nuevo = scan.nextLine();
+			Scanner scaner6 = new Scanner(System.in);
+			String nuevo = scaner6.nextLine();
 			
-			if (nuevo == "b") {
+			if (nuevo.equals("b")) {
 				mashuespedes = false;
 			}
 		}

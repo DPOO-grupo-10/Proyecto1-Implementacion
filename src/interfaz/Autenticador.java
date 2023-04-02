@@ -27,8 +27,20 @@ public class Autenticador {
 		// usuario: personal hotel
 		this.personaldelhotel = new HashMap<String,PersonaldelHotel>();
 		
+		
+		// ADMINISTRADOR YA INNATO
 		usuariosConContraseña.put("ADMINISTRADORDEFAULT", "12345");
 		usuariosConTipo.put("ADMINISTRADORDEFAULT", "ADMINISTRADOR");
+		
+		// RECEPCIONISTA DE PRUEBA
+		
+		usuariosConContraseña.put("RES", "12345");
+		usuariosConTipo.put("RES", "RECEPCIONISTA");
+		
+		// PERSONAL DEL HOTEL DE PRUEBA
+		
+		usuariosConContraseña.put("PER", "12345");
+		usuariosConTipo.put("PER", "PERSONAL DEL HOTEL");
 		
 		
 	}

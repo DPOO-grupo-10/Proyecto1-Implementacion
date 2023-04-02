@@ -66,7 +66,7 @@ public class Habitacion {
 	public ArrayList<Consumo> getConsumos(){
 		return consumos;
 	}
-	
+
 	public void setCamas(String tipocama,int capacidad) {
 		Cama cama = new Cama(tipocama,capacidad);
 		camas.add(cama);

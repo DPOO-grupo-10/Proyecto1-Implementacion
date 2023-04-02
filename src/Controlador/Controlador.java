@@ -109,7 +109,7 @@ public class Controlador {
 		ArrayList<Habitacion> listatotal = new ArrayList<Habitacion>();
 		
 		
-		if(modulo1 != 0) {
+		if(modulo1 > 0) {
 			ArrayList<Habitacion> listahab = maphabit.get(modulo1);
 			int size = listahab.size();
 			if (size > modulo1) {
@@ -123,7 +123,7 @@ public class Controlador {
 			informacionHotel.sethabitacionesmapa(modulo1, listahab);
 			}
 		}
-		if(modulo2 != 0) {
+		if(modulo2 > 0) {
 			ArrayList<Habitacion> listahab = maphabit.get(modulo2);
 			int size = listahab.size();
 			if (size > modulo2) {
@@ -136,7 +136,7 @@ public class Controlador {
 			informacionHotel.sethabitacionesmapa(modulo2, listahab);
 			}
 		}
-		if(modulo3 != 0) {
+		if(modulo3 > 0) {
 			ArrayList<Habitacion> listahab = maphabit.get(modulo3);
 			int size = listahab.size();
 			if (size > modulo3) {
@@ -149,7 +149,7 @@ public class Controlador {
 			informacionHotel.sethabitacionesmapa(modulo3, listahab);
 			}
 		}
-		if(modulo4 != 0) {
+		if(modulo4 > 0) {
 			ArrayList<Habitacion> listahab = maphabit.get(modulo4);
 			int size = listahab.size();
 			if (size > modulo4) {
@@ -171,6 +171,9 @@ public class Controlador {
 		
 		informacionHotel.setReserva(titu, res);
 		
+		
+		
+		
 	}
 	
 	
@@ -179,13 +182,19 @@ public class Controlador {
 	public String cerrarReserva(String titu) {
 		HashMap<String,Reserva> mapareservas = informacionHotel.getReservas();
 		Reserva res = mapareservas.get(titu);
+		String factura = "";
+		
+		if(res == null) {
+			System.out.println("EL NOMBRE DEL TITULAR NO COINCIDE CON NINGUNA RESERVA EN LA BASE DE DATOS");
+		}
+		else {
 		
 		
-		String factura = recepcion.cerrarReserva(res);
+		factura = recepcion.cerrarReserva(res);
 		
 		mapareservas.remove(titu);
 		
-		
+		}
 		
 		return factura;
 		
@@ -197,6 +206,9 @@ public class Controlador {
 	public void consultarReservas(String titular) {
 		HashMap<String,Reserva> mapa = informacionHotel.getReservas();
 		Reserva res =  mapa.get(titular);
+		
+		if(res == null) {System.out.println("Lo sentimos no se encuentra ninguna reserva a este nombre \n");}
+		else {
 		System.out.println("Titular : " + res.getTitular());
 		System.out.println("Fecha Salida: " + res.getFechaSalida());
 		System.out.println("Fecha Entrada: " + res.getFechaEntrada());
@@ -213,7 +225,7 @@ public class Controlador {
 			System.out.println("Identificador habitacion : " + habitacion.getIdentificador());
 		}
 		
-		
+		}
 		
 		
 	}
