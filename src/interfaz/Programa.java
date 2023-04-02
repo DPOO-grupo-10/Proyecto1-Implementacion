@@ -2,7 +2,6 @@ package interfaz;
 
 import java.util.Scanner;
 import Controlador.Controlador;
-import Modelo.Reserva;
 
 public class Programa {
 	
@@ -133,7 +132,7 @@ public class Programa {
 				}
 				
 				// Para cuando de desean agregar habitaciones 
-				// Falta que se agreguen segun un archivo csv o algo asi
+				
 				
 				else if (opcionAdmin == 1) {
 					

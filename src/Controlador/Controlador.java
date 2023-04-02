@@ -1,5 +1,7 @@
 package Controlador;
 import java.io.File;
+import java.io.FileNotFoundException;
+
 import Modelo.Recepcion;
 
 import Modelo.ConsumoRestaurante;
@@ -16,7 +18,7 @@ import Modelo.Consumo;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.ArrayList;
-
+import java.util.Arrays;
 
 import Modelo.DatosHotel;
 
@@ -47,6 +49,40 @@ public class Controlador {
 	public void agregarHabitacionPorArchivo(String ruta) {
 		
 		File archivo = new File(ruta);
+	
+		try {
+			
+			
+			Scanner scan = new Scanner(archivo);
+			while(scan.hasNextLine()) {
+				String linea = scan.nextLine();
+				String[] listaLinea = linea.split(",");
+				ArrayList<String> list = new ArrayList<String>(Arrays.asList(listaLinea));
+				String tipoHabitacion = list.get(0);
+				String tieneBalcon = list.get(1);
+				Boolean balcon = false;
+				if(tieneBalcon.equals("SI")) {
+					balcon = true;
+				}
+				String tieneVista = list.get(2);
+				Boolean vista = false;
+				if(tieneVista.equals("SI")) {
+					vista = true;
+				}
+				String tieneCocina = list.get(3);
+				Boolean cocina = false;
+				if(tieneCocina.equals("SI")) {
+					cocina = true;
+				}
+				
+				Habitacion habitacion = new Habitacion(tipoHabitacion, balcon, vista, cocina);
+				cargador.cargarHabitaciones(informacionHotel, habitacion);
+				
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void agregarServicios(String tipoServicio,String disponibilidad,int costo ) {
