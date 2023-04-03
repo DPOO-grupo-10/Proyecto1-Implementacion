@@ -442,10 +442,10 @@ public class Programa {
 				// Le puede asignar el conumo a cierta habitacion dependiendo del id, por lo cual entonces 
 				// sacamos los consumos que hace una habitacion y una reserva en general
 				
-				
+				Scanner scanner57 = new Scanner(System.in);	
 				// puede estar pago ya o no
 				// la impresion de esto se haria en las facturas poniendo en un lado la forma de pagado y los otros son los no pagados
-				String opcionServicio = scan.nextLine();
+				String opcionServicio = scanner57.nextLine();
 				
 				
 				if (opcionServicio.equals("1")) {
