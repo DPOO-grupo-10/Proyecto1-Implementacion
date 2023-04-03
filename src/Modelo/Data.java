@@ -11,7 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 
-public class Data implements Serializable {
+public class Data {
 
 	private String nombre;
 	private ArrayList<Habitacion> habitacionesDisponibles;

@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.io.Serializable;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 
 public class DatosHotel implements Serializable{
@@ -92,4 +95,33 @@ public class DatosHotel implements Serializable{
 		servicios.put(tiposervicio, serv);
 	}
 	
+	public static void serializar(DatosHotel hotel, String nombreArchivo) {
+        try {
+            FileOutputStream archivoSalida = new FileOutputStream(nombreArchivo);
+            ObjectOutputStream salida = new ObjectOutputStream(archivoSalida);
+            salida.writeObject(hotel);
+            salida.close();
+            archivoSalida.close();
+            System.out.println("Objeto serializado en el archivo " + nombreArchivo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+	public static DatosHotel deserializar(String nombreArchivo) {
+        DatosHotel hotel = null;
+        try {
+            FileInputStream archivoEntrada = new FileInputStream(nombreArchivo);
+            ObjectInputStream entrada = new ObjectInputStream(archivoEntrada);
+            hotel = (DatosHotel) entrada.readObject();
+            entrada.close();
+            archivoEntrada.close();
+            System.out.println("Objeto deserializado desde el archivo " + nombreArchivo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return hotel;
+    }
 }
