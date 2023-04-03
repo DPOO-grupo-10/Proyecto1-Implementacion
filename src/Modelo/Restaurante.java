@@ -1,7 +1,7 @@
 package Modelo;
 
 import java.util.ArrayList;
-
+import java.io.Serializable;
 public class Restaurante extends Servicio{
 	private ArrayList<Plato> platos;
 	private ArrayList<Bebida> bebidas;

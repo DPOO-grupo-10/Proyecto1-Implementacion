@@ -1,7 +1,7 @@
 package Controlador;
 import java.io.File;
 import java.io.FileNotFoundException;
-
+import java.io.Serializable;
 import Modelo.Recepcion;
 
 import Modelo.ConsumoRestaurante;

@@ -1,4 +1,5 @@
 package Modelo;
+import java.io.Serializable;
 
 public class Cama {
 	// existen tres tipos de cama: NIÑOS, SENCILLA Y DOBLE 

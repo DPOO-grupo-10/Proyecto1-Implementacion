@@ -1,4 +1,5 @@
 package Modelo;
+import java.io.Serializable;
 
 
 public class PersonaldelHotel {

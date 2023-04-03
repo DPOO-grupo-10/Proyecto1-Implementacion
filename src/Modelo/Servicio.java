@@ -1,5 +1,5 @@
 package Modelo;
-
+import java.io.Serializable;
 public class Servicio {
 	private String tipoServicio;
 	private String disponibilidad;

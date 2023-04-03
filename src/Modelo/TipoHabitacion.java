@@ -6,7 +6,7 @@ import java.util.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZoneId;
-
+import java.io.Serializable;
 public class TipoHabitacion {
 
 	// existen tres tipos de habitación: estándar, suite, y suite doble.

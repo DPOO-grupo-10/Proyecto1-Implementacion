@@ -2,6 +2,7 @@ package Modelo;
 
 import java.lang.Math;
 import java.util.ArrayList;
+import java.io.Serializable;
 
 public class Habitacion {
 	private String identificador;

@@ -2,7 +2,7 @@ package interfaz;
 
 
 import java.util.HashMap;
-
+import java.io.Serializable;
 import Modelo.PersonaldelHotel;
 
 public class Autenticador {

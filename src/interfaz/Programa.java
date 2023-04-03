@@ -2,7 +2,7 @@ package interfaz;
 
 import java.util.Scanner;
 import Controlador.Controlador;
-
+import java.io.Serializable;
 public class Programa {
 	
 	
