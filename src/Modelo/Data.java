@@ -10,7 +10,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-
+//intento para serializacion
 public class Data {
 
 	private String nombre;
