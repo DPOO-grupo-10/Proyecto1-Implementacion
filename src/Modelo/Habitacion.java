@@ -9,7 +9,7 @@ import java.io.ObjectInputStream;
 public class Habitacion {
 	private String identificador;
 	// SOLO TRES TIPOS : ESTANDAR, SUITE Y SUITE DOUBLE
-	private String  tipoHabitacion;
+	private TipoHabitacion tipoHabitacion;
 	private Boolean balcon;
 	private Boolean vista;
 	private Boolean cocina;
@@ -21,7 +21,7 @@ public class Habitacion {
 	
 	
 	
-	public Habitacion(String tipo, Boolean balcon2,Boolean vista2, Boolean cocina2) {
+	public Habitacion(TipoHabitacion tipo, Boolean balcon2,Boolean vista2, Boolean cocina2) {
 		this.identificador =Double.toString(Math.random());
 		this.tipoHabitacion = tipo;
 		this.balcon = balcon2;
@@ -36,7 +36,7 @@ public class Habitacion {
 	
 	
 
-	public String getTipoHabitacion() {
+	public TipoHabitacion getTipoHabitacion() {
 		return tipoHabitacion;
 	}
 	public String getIdentificador() {

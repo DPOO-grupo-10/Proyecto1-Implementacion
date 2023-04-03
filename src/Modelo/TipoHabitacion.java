@@ -9,27 +9,22 @@ import java.time.ZoneId;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+
 public class TipoHabitacion {
 
-	// existen tres tipos de habitación: estándar, suite, y suite doble.
+	// existen tres tipos de habitación: ESTANDAR, SUITE, y SUITE_DOBLE.
 	
 	//atributos
 		private String tipoHabitacion;
-		private double tarifaDia;
-		private double tarifaRango;
 		private HashMap<Date, Double> tarifaAño;
 		private HashMap<DayOfWeek, Double> tarifaDiaSemana;
 		
 		
 	// constructor
 		
-		public TipoHabitacion(String tipoHabitacion, double tarifaDia, double tarifaRango, HashMap<Date, Double> tarifaAño, HashMap<DayOfWeek, Double> tarifaDiaSemana)
+		public TipoHabitacion(String tipoHabitacion)
 		{
 			 this.setTipoHabitacion(tipoHabitacion);
-		     this.tarifaDia = tarifaDia;
-		     this.tarifaRango = tarifaRango;
-		     this.tarifaAño = tarifaAño;
-		     this.tarifaDiaSemana = tarifaDiaSemana;
 		    
 		}
 		
