@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.Serializable;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 public class Reserva {
 	
 	

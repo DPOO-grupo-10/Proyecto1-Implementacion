@@ -3,9 +3,13 @@ package Modelo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.Serializable;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 
-public class DatosHotel {
+
+public class DatosHotel implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private HashMap<String,Habitacion> habitaciones  = new HashMap<String,Habitacion>();
 	private HashMap<String,Habitacion> habitacionesOcupadas  = new HashMap<String,Habitacion>();
 	private HashMap<Integer,ArrayList<Habitacion>> habitacionesPorTipo  = new HashMap<Integer,ArrayList<Habitacion>>();

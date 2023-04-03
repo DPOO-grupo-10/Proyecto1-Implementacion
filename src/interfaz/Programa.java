@@ -3,6 +3,8 @@ package interfaz;
 import java.util.Scanner;
 import Controlador.Controlador;
 import java.io.Serializable;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 public class Programa {
 	
 	

@@ -3,6 +3,8 @@ package interfaz;
 
 import java.util.HashMap;
 import java.io.Serializable;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import Modelo.PersonaldelHotel;
 
 public class Autenticador {

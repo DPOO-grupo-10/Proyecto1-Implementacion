@@ -2,6 +2,8 @@ package Controlador;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import Modelo.Recepcion;
 
 import Modelo.ConsumoRestaurante;
