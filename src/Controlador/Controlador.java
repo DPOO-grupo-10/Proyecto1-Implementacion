@@ -14,6 +14,7 @@ import Modelo.Habitacion;
 import Modelo.Huesped;
 import Modelo.Plato;
 import Modelo.Servicio;
+import Modelo.TipoHabitacion;
 import Modelo.Restaurante;
 import Modelo.Consumo;
 
@@ -39,7 +40,7 @@ public class Controlador {
 	
 	
 	
-	public void agregarHabitaciones(String tipo, Boolean balcon, Boolean vista, Boolean cocina) {
+	public void agregarHabitaciones(TipoHabitacion tipo, Boolean balcon, Boolean vista, Boolean cocina) {
 		Habitacion habitacion = new Habitacion(tipo,balcon,vista,cocina);
 		
 		
@@ -60,7 +61,15 @@ public class Controlador {
 				String linea = scan.nextLine();
 				String[] listaLinea = linea.split(",");
 				ArrayList<String> list = new ArrayList<String>(Arrays.asList(listaLinea));
-				String tipoHabitacion = list.get(0);
+				String nombreTipoHabitacion = listaLinea[0];
+				TipoHabitacion tipoHabitacion = null;
+				if (nombreTipoHabitacion.equals("ESTANDAR")) {
+				    tipoHabitacion = new TipoHabitacion("ESTANDAR");
+				} else if (nombreTipoHabitacion.equals("SUITE")) {
+				    tipoHabitacion = new TipoHabitacion("SUITE");
+				} else if (nombreTipoHabitacion.equals("SUITE_DOBLE")) {
+				    tipoHabitacion = new TipoHabitacion("SUITE_DOBLE");
+				}
 				String tieneBalcon = list.get(1);
 				Boolean balcon = false;
 				if(tieneBalcon.equals("SI")) {

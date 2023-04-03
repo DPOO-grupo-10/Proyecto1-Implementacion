@@ -2,6 +2,8 @@ package interfaz;
 
 import java.util.Scanner;
 import Controlador.Controlador;
+import Modelo.TipoHabitacion;
+
 import java.io.Serializable;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
@@ -183,19 +185,19 @@ public class Programa {
 						int opciontipo = scan.nextInt();
 					
 						// tipo habitacion
-						String tipo = "" ;
+						
+						TipoHabitacion tipoHabitacion = null;
+						
 						if(opciontipo == 1) {
-							tipo = "ESTANDAR";
-							
-						}	
-						if(opciontipo == 2) {
-							tipo = "SUITE";
-							
+						    tipoHabitacion = new TipoHabitacion("ESTANDAR");
+						} else if(opciontipo == 2) {
+						    tipoHabitacion = new TipoHabitacion("SUITE");
+						} else if(opciontipo == 3) {
+						    tipoHabitacion = new TipoHabitacion("SUITE DOUBLE");
+						} else {
+						    System.out.println("Opción inválida");
 						}
-						if(opciontipo == 3) {
-							tipo = "SUITE DOUBLE";
-							
-						}	
+						
 					
 						System.out.println("¿ La habitacion tiene Balcon ?: ");
 						System.out.println("1. SI ");
@@ -258,7 +260,7 @@ public class Programa {
 					
 					
 					
-						controlador.agregarHabitaciones(tipo, balcon, vista, cocina);
+						controlador.agregarHabitaciones(tipoHabitacion, balcon, vista, cocina);
 						System.out.println("Se ha agregado la habitacion con exito: ");
 						
 						System.out.println("Desea agregar mas habitaciones? ");
