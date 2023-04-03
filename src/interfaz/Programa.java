@@ -2,6 +2,7 @@ package interfaz;
 
 import java.util.Scanner;
 import Controlador.Controlador;
+import Modelo.DatosHotel;
 import Modelo.TipoHabitacion;
 
 import java.io.Serializable;
@@ -520,7 +521,7 @@ public class Programa {
 			
 		}
 		
-		
+	
 	}
 	
 

@@ -416,7 +416,15 @@ public class Controlador implements Serializable {
 
 
 	
-	
+	//@Override
+   // protected void finalize() throws Throwable {
+        // Serializar el objeto Hotel y otros objetos relacionados
+     //   DatosHotel.serializar(informacionHotel, "hotel.dat");
+        // otros objetos relacionados...
+
+        // Llamar al método finalize() de la clase padre
+     //   super.finalize();
+   // }
 
 	
 	
